@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit IngredientCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit IngredientCategory</h1>
+
+    {{ include('ingredient_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ingredient_category_index') }}">back to list</a>
+
+    {{ include('ingredient_category/_delete_form.html.twig') }}
+{% endblock %}
