@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\IngredientCategory;
 use App\Form\IngredientCategoryType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/ingredient/category")
  */
-class IngredientCategoryController extends AbstractController
+class IngredientCategoryController extends BaseController
 {
     /**
      * @Route("/", name="ingredient_category_index", methods={"GET"})

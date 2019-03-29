@@ -4,38 +4,13 @@
 
 {% block body %}
     <h1>Recipe index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>PreparationTime</th>
-                <th>CookingTime</th>
-                <th>Servings</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container recipe-container">
         {% for recipe in recipes %}
-            <tr>
-                <td>{{ recipe.id }}</td>
-                <td>{{ recipe.title }}</td>
-                <td>{{ recipe.preparationTime ? recipe.preparationTime|date('H:i:s') : '' }}</td>
-                <td>{{ recipe.cookingTime ? recipe.cookingTime|date('H:i:s') : '' }}</td>
-                <td>{{ recipe.servings ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+            <div class="col-sm-6 col-md-4 card-recipe">
+                {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
     <a href="{{ path('recipe_new') }}">Create new</a>
 {% endblock %}

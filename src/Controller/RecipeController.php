@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Picture;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/recipe")
  */
-class RecipeController extends AbstractController
+class RecipeController extends BaseController
 {
     /**
      * @Route("/", name="recipe_index", methods={"GET"})
@@ -22,7 +22,7 @@ class RecipeController extends AbstractController
         $recipes = $this->getDoctrine()
             ->getRepository(Recipe::class)
             ->findAll();
-
+        dump($recipes);
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);
@@ -96,4 +96,5 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute('recipe_index');
     }
+
 }

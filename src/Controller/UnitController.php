@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Unit;
 use App\Form\UnitType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/unit")
  */
-class UnitController extends AbstractController
+class UnitController extends BaseController
 {
     /**
      * @Route("/", name="unit_index", methods={"GET"})

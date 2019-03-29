@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Difficulty;
 use App\Form\DifficultyType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/difficulty")
  */
-class DifficultyController extends AbstractController
+class DifficultyController extends BaseController
 {
     /**
      * @Route("/", name="difficulty_index", methods={"GET"})

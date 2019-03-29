@@ -102,6 +102,11 @@ class Recipe
     private $users;
 
     /**
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="recipe")
+     */
+    private $pictures;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -298,6 +303,22 @@ class Recipe
     {
         $this->tag = $tag;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @param mixed $pictures
+     */
+    public function setPictures($pictures): void
+    {
+        $this->pictures = $pictures;
     }
 
 }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Menu;
 use App\Form\MenuType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/menu")
  */
-class MenuController extends AbstractController
+class MenuController extends BaseController
 {
     /**
      * @Route("/", name="menu_index", methods={"GET"})

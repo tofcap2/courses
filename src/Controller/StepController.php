@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Step;
 use App\Form\StepType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/step")
  */
-class StepController extends AbstractController
+class StepController extends BaseController
 {
     /**
      * @Route("/", name="step_index", methods={"GET"})

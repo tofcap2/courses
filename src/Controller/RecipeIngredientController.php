@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\RecipeIngredient;
 use App\Form\RecipeIngredientType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/recipe/ingredient")
  */
-class RecipeIngredientController extends AbstractController
+class RecipeIngredientController extends BaseController
 {
     /**
      * @Route("/", name="recipe_ingredient_index", methods={"GET"})

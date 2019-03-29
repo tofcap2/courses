@@ -8,12 +8,20 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
     "node-sass": "^4.11.0",
+    "popper.js": "^1.14.7",
     "sass-loader": "^7.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.25.0",
+    "webpack-notifier": "^1.7.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
   },
   "author": "",
   "license": "ISC"
