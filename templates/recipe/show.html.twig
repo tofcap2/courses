@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ recipe.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ recipe.title }}</td>
             </tr>
@@ -25,14 +21,37 @@
             </tr>
             <tr>
                 <th>Servings</th>
-                <td>{{ recipe.servings ? 'Yes' : 'No' }}</td>
+                <td>{{ recipe.servings }}</td>
             </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/' ~ picture.filename) }}" class="card-img-top" alt="{{ recipe.title }}"></td>
+            </tr>
+            <tr>
+                <th>Steps</th>
+                {% for step in recipe.step %}
+                    <td>{{ step.number }}</td>
+                    <td>{{ step.content }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ingredients</th>
+                {% for recipeIngredient in recipe.recipeIngredient %}
+                    <td>{{ recipeIngredient.qte }}</td>
+                    <td>
+                        {% if recipeIngredient.unit %}
+                            {{ recipeIngredient.unit.label }}
+                        {% else %}
+
+                        {% endif %}
+                    </td>
+                    <td>{{ recipeIngredient.ingredient.label }}</td>
+                {% endfor %}
+            </tr>
+
         </tbody>
     </table>
+    <a href="{{ path('recipe_new') }}">Ajouter une recette</a>
 
-    <a href="{{ path('recipe_index') }}">back to list</a>
 
-    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
-
-    {{ include('recipe/_delete_form.html.twig') }}
 {% endblock %}

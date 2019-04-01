@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Entity\Recipe;
+use App\Entity\RecipeIngredient;
+use App\Entity\Step;
 use App\Form\RecipeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,10 +56,13 @@ class RecipeController extends BaseController
     /**
      * @Route("/{id}", name="recipe_show", methods={"GET"})
      */
-    public function show(Recipe $recipe): Response
+    public function show(Recipe $recipe, Picture $picture, Step $step, RecipeIngredient $recipeIngredient): Response
     {
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
+            'picture' => $picture,
+            'step' => $step,
+            'recipeIngredient' => $recipeIngredient
         ]);
     }
 

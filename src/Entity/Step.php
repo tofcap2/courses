@@ -22,9 +22,9 @@ class Step
     private $id;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="number", type="boolean", nullable=false)
+     * @ORM\Column(name="number", type="integer", nullable=false)
      */
     private $number;
 
@@ -38,7 +38,7 @@ class Step
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="step")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
      * })
@@ -64,22 +64,24 @@ class Step
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function isNumber(): bool
+    public function getNumber(): int
     {
         return $this->number;
     }
 
     /**
-     * @param bool $number
+     * @param int $number
      * @return Step
      */
-    public function setNumber(bool $number): Step
+    public function setNumber(int $number): Step
     {
         $this->number = $number;
         return $this;
     }
+
+
 
     /**
      * @return string
@@ -116,6 +118,5 @@ class Step
         $this->recipe = $recipe;
         return $this;
     }
-
 
 }

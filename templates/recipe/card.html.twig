@@ -1,11 +1,11 @@
-{% for picture in recipe.pictures %}
-
-    <div class="card" style="width: 18rem;">
-        <img src="{{ asset('uploads/' ~ picture.filename) }}" class="card-img-top" alt="{{ recipe.title }}">
-        <div class="card-body">
-            <h6 class="card-title">{{ recipe.title }}</h6>
-            <p class="card-text">{{ recipe.category.label }}</p>
+<a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+    {% for picture in recipe.pictures %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ asset('uploads/' ~ picture.filename) }}" class="card-img-top" alt="{{ recipe.title }}">
+            <div class="card-body">
+                <h6 class="card-title">{{ recipe.title }}</h6>
+                <p class="card-text">{{ recipe.category.label }}</p>
+            </div>
         </div>
-    </div>
-
-{% endfor %}
+    {% endfor %}
+</a>

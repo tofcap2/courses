@@ -45,9 +45,9 @@ class Recipe
     private $cookingTime;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="servings", type="boolean", nullable=false)
+     * @ORM\Column(name="servings", type="integer", nullable=false)
      */
     private $servings;
 
@@ -106,6 +106,21 @@ class Recipe
      */
     private $pictures;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\OneToMany(targetEntity="Step", mappedBy="recipe")
+     */
+    private $step;
+
+    /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="RecipeIngredient", mappedBy="recipe")
+     */
+    private $recipeIngredient;
+
     /**
      * Constructor
      */
@@ -113,6 +128,13 @@ class Recipe
     {
         $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function __toString() {
+        return $this->name;
     }
 
     /**
@@ -164,7 +186,7 @@ class Recipe
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -182,7 +204,7 @@ class Recipe
     /**
      * @return \DateTime
      */
-    public function getPreparationTime(): \DateTime
+    public function getPreparationTime(): ?\DateTime
     {
         return $this->preparationTime;
     }
@@ -216,18 +238,18 @@ class Recipe
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function isServings(): bool
+    public function isServings(): ?int
     {
         return $this->servings;
     }
 
     /**
-     * @param bool $servings
+     * @param int $servings
      * @return Recipe
      */
-    public function setServings(bool $servings): Recipe
+    public function setServings(int $servings): Recipe
     {
         $this->servings = $servings;
         return $this;
@@ -236,7 +258,7 @@ class Recipe
     /**
      * @return Category
      */
-    public function getCategory(): Category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
@@ -254,7 +276,7 @@ class Recipe
     /**
      * @return Difficulty
      */
-    public function getDifficulty(): Difficulty
+    public function getDifficulty(): ?Difficulty
     {
         return $this->difficulty;
     }
@@ -272,7 +294,7 @@ class Recipe
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -290,7 +312,7 @@ class Recipe
     /**
      * @return Collection
      */
-    public function getTag(): Collection
+    public function getTag(): ?Collection
     {
         return $this->tag;
     }
@@ -320,5 +342,43 @@ class Recipe
     {
         $this->pictures = $pictures;
     }
+
+    /**
+     * @return int
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
+
+    /**
+     * @param mixed $step
+     */
+    public function setStep(int $step): void
+    {
+        $this->step = $step;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecipeIngredient()
+    {
+        return $this->recipeIngredient;
+    }
+
+    /**
+     * @param mixed $recipeIngredient
+     */
+    public function setRecipeIngredient($recipeIngredient): void
+    {
+        $this->recipeIngredient = $recipeIngredient;
+    }
+
+
+
+
+
+
 
 }

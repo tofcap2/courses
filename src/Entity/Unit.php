@@ -22,7 +22,7 @@ class Unit
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="label", type="string", length=255, nullable=false)
      */
@@ -47,22 +47,22 @@ class Unit
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
     /**
-     * @param string $label
-     * @return Unit
+     * @param string|null $label
      */
-    public function setLabel(string $label): Unit
+    public function setLabel(?string $label): void
     {
         $this->label = $label;
-        return $this;
     }
+
+
 
 
 

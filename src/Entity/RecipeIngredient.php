@@ -41,7 +41,7 @@ class RecipeIngredient
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="RecipeIngredient")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
      * })
@@ -49,7 +49,7 @@ class RecipeIngredient
     private $recipe;
 
     /**
-     * @var Unit
+     * @var Unit|null
      *
      * @ORM\ManyToOne(targetEntity="Unit")
      * @ORM\JoinColumns({
@@ -131,22 +131,22 @@ class RecipeIngredient
     }
 
     /**
-     * @return Unit
+     * @return Unit|null
      */
-    public function getUnit(): Unit
+    public function getUnit(): ?Unit
     {
         return $this->unit;
     }
 
     /**
-     * @param Unit $unit
-     * @return RecipeIngredient
+     * @param Unit|null $unit
      */
-    public function setUnit(Unit $unit): RecipeIngredient
+    public function setUnit(?Unit $unit): void
     {
         $this->unit = $unit;
-        return $this;
     }
+
+
 
 
 }

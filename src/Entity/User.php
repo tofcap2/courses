@@ -73,6 +73,7 @@ class User
         $this->recipes = new ArrayCollection();
     }
 
+
     /**
      * @return Collection|Recipe[]
      */
@@ -120,7 +121,7 @@ class User
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -138,7 +139,7 @@ class User
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -156,7 +157,7 @@ class User
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
