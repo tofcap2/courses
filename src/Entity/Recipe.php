@@ -130,11 +130,9 @@ class Recipe
         $this->users = new ArrayCollection();
     }
 
-    /**
-     * @return mixed
-     */
-    public function __toString() {
-        return $this->name;
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**

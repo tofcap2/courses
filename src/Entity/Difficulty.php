@@ -29,11 +29,16 @@ class Difficulty
     private $label;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="level", type="boolean", nullable=false)
+     * @ORM\Column(name="level", type="integer", nullable=false)
      */
     private $level;
+
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
 
     /**
      * @return int
@@ -63,13 +68,13 @@ class Difficulty
 
     /**
      * @param string $label
-     * @return Difficulty
      */
-    public function setLabel(string $label): Difficulty
+    public function setLabel(string $label): void
     {
         $this->label = $label;
-        return $this;
     }
+
+
 
     /**
      * @return bool
