@@ -41,7 +41,7 @@ class RecipeIngredient
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="RecipeIngredient")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="recipeIngredient")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
      * })
@@ -57,6 +57,11 @@ class RecipeIngredient
      * })
      */
     private $unit;
+
+    public function __toString()
+    {
+        return $this->getUnit();
+    }
 
     /**
      * @return int

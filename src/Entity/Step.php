@@ -45,6 +45,12 @@ class Step
      */
     private $recipe;
 
+    public function __toString()
+    {
+        return $this->getContent();
+    }
+
+
     /**
      * @return int
      */

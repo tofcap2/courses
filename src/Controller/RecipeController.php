@@ -24,7 +24,7 @@ class RecipeController extends BaseController
         $recipes = $this->getDoctrine()
             ->getRepository(Recipe::class)
             ->findAll();
-        dump($recipes);
+
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);

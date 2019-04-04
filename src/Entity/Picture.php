@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
  *
  * @ORM\Table(name="picture", indexes={@ORM\Index(name="fk_picture_recipe1_idx", columns={"recipe_id"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Picture
 {
@@ -29,6 +34,19 @@ class Picture
     private $filename;
 
     /**
+     * @Vich\UploadableField(mapping="pictures_images", fileNameProperty="filename")
+     * @var File
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     */
+    private $filenameFile;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
@@ -44,6 +62,12 @@ class Picture
      * })
      */
     private $recipe;
+
+    public function __toString(): string
+    {
+        return $this->getFilename();
+    }
+
 
     /**
      * @return int
@@ -116,6 +140,45 @@ class Picture
         $this->recipe = $recipe;
         return $this;
     }
+
+    /**
+     * @return File
+     */
+    public function getFilenameFile(): ?File
+    {
+        return $this->filenameFile;
+    }
+
+    /**
+     * @param File $filename
+     * @throws \Exception
+     */
+    public function setFilenameFile(File $filename = null)
+    {
+        $this->filenameFile = $filename;
+        if($filename){
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     * @return Picture
+     */
+    public function setUpdatedAt(\DateTime $updatedAt): Picture
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
 
 
 }

@@ -1,14 +1,17 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
+    <div class="container col-md-6 offset-3">
         {{ form_start(form) }}
+        <div class="form-group">
+
         {{ form_row(form.email) }}
         {{ form_row(form.username) }}
         {{ form_row(form.plainPassword.first) }}
         {{ form_row(form.plainPassword.second) }}
 
-        <button type="submit">Register!</button>
+        <button type="submit" class="btn btn-success">S'enregistrer</button>
+        </div>
         {{ form_end(form) }}
     </div>
 {% endblock %}

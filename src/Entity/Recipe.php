@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Recipe
  *
  * @ORM\Table(name="recipe", indexes={@ORM\Index(name="fk_recipe_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_recipe_category1_idx", columns={"category_id"}), @ORM\Index(name="fk_recipe_difficulty1_idx", columns={"difficulty_id"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Recipe
 {
@@ -115,7 +118,7 @@ class Recipe
     private $step;
 
     /**
-     * @var
+     * @var RecipeIngredient
      *
      * @ORM\OneToMany(targetEntity="RecipeIngredient", mappedBy="recipe")
      */

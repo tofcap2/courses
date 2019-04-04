@@ -6,7 +6,7 @@
     <h1>Recipe index</h1>
     <div class="container recipe-container">
         {% for recipe in recipes %}
-            <div class="col-sm-6 col-md-4 card-recipe">
+            <div class="col-xs-4 col-sm-8 col-md-4 card-recipe">
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
             </div>
         {% endfor %}

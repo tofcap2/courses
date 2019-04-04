@@ -51,10 +51,12 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/show", name="user_show", methods={"GET"})
      */
-    public function show(User $user): Response
+    public function show(): Response
     {
+        $user = $this->getUser();
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
