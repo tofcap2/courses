@@ -3,88 +3,59 @@
 {% block title %}Recipe{% endblock %}
 
 {% block body %}
-    <div>
-        <div class="row mt-5 align-items-center">
-            <h1 class="col-12 col-md-8">{{ recipe.title }}</h1>
-            <button class="btn btn-primary btn-sm col-6 col-sm-4 col-md-2 ml-3">Ajouter à mes favoris</button>
+<div class="recipe-show p-4 mt-5">
+    <div class="row align-items-center">
+        <h1 class="col-12 col-md-8">{{ recipe.title }}</h1>
+        <button class="btn btn-success btn-sm col-6 col-sm-4 col-md-2 ml-3">Ajouter à mes favoris</button>
+    </div>
+    <div class="row">
+        <img src="{{ asset('uploads/' ~ picture.filename) }}" class="img-thumbnail ml-3 mt-5" alt="{{ recipe.title }}">
+        <div class="mt-5 ml-5">
+            <h5 class="mt-3">Préparation pour : {{ recipe.servings }} personnes</h5>
+            <h5 class="mt-3">Temps de préparation : {{ recipe.preparationTime ? recipe.preparationTime|date('H:i:s') : '' }}</h5>
+            <h5 class="mt-2">Temps de cuisson : {{ recipe.cookingTime ? recipe.cookingTime|date('H:i:s') : '' }}</h5>
+            <h5 class="mt-4">Liste d'ingredients</h5>
         </div>
-        <div class="row">
-            <img src="{{ asset('uploads/' ~ picture.filename) }}" class="img-thumbnail mt-5" alt="{{ recipe.title }}">
-            <div class="mt-5 ml-5">
-                <h5 class="mt-3">Préparation pour : {{ recipe.servings }} personnes</h5>
-                <h5 class="mt-3">Temps de préparation : {{ recipe.preparationTime ? recipe.preparationTime|date('H:i:s') : '' }}</h5>
-                <h5 class="mt-2">Temps de cuisson : {{ recipe.cookingTime ? recipe.cookingTime|date('H:i:s') : '' }}</h5>
-                <h5 class="mt-4">Liste d'ingredients</h5>
-                <table class="table">
-                    <tr>
-                    {% for recipeIngredient in recipe.recipeIngredient %}
-                        <td class="text-right">{{ recipeIngredient.qte| round }}</td>
-                        <td class="text-left">{% if recipeIngredient.unit %}
-                                {{ recipeIngredient.unit.label|replace({
-                                        'Cuillère à café': 'CC',
-                                        'Cuillère à soupe': 'CS',
-                                        'Miligramme': 'mg',
-                                        'Gramme': 'gr',
-                                        'Kilogramme': 'kg',
-                                        'Mililitre': 'ml',
-                                        'Décilitre': 'dl',
-                                        'Centilitre': 'cl',
-                                        'Litre': 'l'
-                                    })
-                                }}
-                            {% else %}
-                            {% endif %}</td>
-                        <td>{{ recipeIngredient.ingredient.label }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
+    </div>
+    <div class="row mt-4 ml-2">
         <div>
-            <h2>Préparation</h2>
+            <h5>Ingrédients</h5>
+            <table class="table">
+                <tr>
+                    {% for recipeIngredient in recipe.recipeIngredient %}
+                    <td class="text-right">{{ recipeIngredient.qte| round }}</td>
+                    <td class="text-left">{% if recipeIngredient.unit %}
+                            {{ recipeIngredient.unit.label|replace({
+                                    'Cuillère à café': 'CC',
+                                    'Cuillère à soupe': 'CS',
+                                    'Miligramme': 'mg',
+                                    'Gramme': 'gr',
+                                    'Kilogramme': 'kg',
+                                    'Mililitre': 'ml',
+                                    'Décilitre': 'dl',
+                                    'Centilitre': 'cl',
+                                    'Litre': 'l'
+                                })
+                            }}
+                        {% else %}
+                        {% endif %}</td>
+                    <td>{{ recipeIngredient.ingredient.label }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="ml-1">
+            <h5>Etapes de préparation</h5>
             <table class="table">
                 <tr>
                     {% for step in recipe.step %}
-                        <td>{{ step.number }}</td>
-                        <td>{{ step.content }}</td>
-                    {% endfor %}
+                    <td class="text-right">{{ step.number }}</td>
+                    <td class="text-left">{{ step.content }}
                 </tr>
+                {% endfor %}
             </table>
-
         </div>
     </div>
-
-
-            <tr>
-                <th>Image</th>
-                <td><img src="{{ asset('uploads/' ~ picture.filename) }}" class="card-img-top" alt="{{ recipe.title }}"></td>
-            </tr>
-            <tr>
-                <th>Steps</th>
-                {% for step in recipe.step %}
-                    <td>{{ step.number }}</td>
-                    <td>{{ step.content }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Ingredients</th>
-                {% for recipeIngredient in recipe.recipeIngredient %}
-                    <td>{{ recipeIngredient.qte }}</td>
-                    <td>
-                        {% if recipeIngredient.unit %}
-                            {{ recipeIngredient.unit.label }}
-                        {% else %}
-
-                        {% endif %}
-                    </td>
-                    <td>{{ recipeIngredient.ingredient.label }}</td>
-                    <br>
-                {% endfor %}
-            </tr>
-
-        </tbody>
-    </table>
-    <a href="{{ path('recipe_new') }}">Ajouter une recette</a>
-
+</div>
 
 {% endblock %}

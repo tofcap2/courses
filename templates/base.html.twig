@@ -15,17 +15,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav d-flex align-items-center justify-content-center h5">
                     <a class="nav-item nav-link" href="#">
-                        <img class="img-header" src="../public/images/logo.png" alt="">
+                        <img class="img-header" src="{{ asset('images/logo.png') }}" alt="">
                     </a>
                     <a class="nav-item nav-link" href="{{ path('homepage') }}">Home</a>
                     <a class="nav-item nav-link" href="{{ path('recipe_index') }}">Recettes</a>
                     {% if app.user %}
                     <a class="nav-item nav-link" href="{{ path('user_show') }}">Mon compte</a>
-                    <a class="nav-item nav-link" href="#">Mes menus</a>
+                    <a class="nav-item nav-link" href="{{ path('menu_show') }}">Mes menus</a>
                     <a class="nav-item nav-link" href="#">Contact</a>
-                    <a class="nav-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    <div>
+                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        <a class="nav-item nav-link ml-5" href="{{ path('user_show') }}">{{ app.user }}</a>
+                    </div>
                     {% else %}
                     <a class="nav-item nav-link" href="{{ path('app_login') }}">Se connecter</a>
                     <a class="nav-item nav-link" href="#">Contact</a>

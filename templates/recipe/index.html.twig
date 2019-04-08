@@ -3,10 +3,11 @@
 {% block title %}Recipe index{% endblock %}
 
 {% block body %}
-    <h1>Recipe index</h1>
+    <h1 class="text-center mt-5">Recettes</h1>
     <div class="container recipe-container">
+
         {% for recipe in recipes %}
-            <div class="col-xs-4 col-sm-8 col-md-4 card-recipe">
+            <div class="col-xs-4 col-sm-8 col-md-4 card-recipe flex-wrap">
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
             </div>
         {% endfor %}

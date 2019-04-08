@@ -11,7 +11,7 @@
 /*===============HEADER================*/
 
 .img-header{
-    width: 50%;
+    width: 40%;
 }
 
 /*===============RECIPE================*/
@@ -62,6 +62,26 @@
 
 /*===============RECIPE SHOW================*/
 
+.recipe-show{
+    background-color: #F2F2F2;
 
+    h1{
+        font-size: 2em;
+    }
 
+    td{
+        font-size: 0.8em;
+    }
+}
+
+/*===============USER================*/
+
+.user-rens img{
+    width: 10%;
+    height: 20%;
+}
+
+.add-recipe{
+    height:50%;
+}
 
