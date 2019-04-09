@@ -23,13 +23,13 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
-//Ajout d'input pour les formulaires
+//=============================================Ajout d'images===========================================//
 
+//Ajout d'input pour les images
 var $collectionHolder;
-
 //setup an "add a picture" link
-var $addTagButton = $('<button type="button" class="add_picture_link">Add a tag</button>');
-var $newLinkLi = $('<li></li>').append($addTagButton);
+var $addPictureButton = $('<button type="button" class="add_picture_link btn btn-success">Ajouter une photo</button>');
+var $newLinkLi = $('<li></li>').append($addPictureButton);
 
 $(document).ready(function () {
     //Get the ul that holds the collection of tags
@@ -42,7 +42,7 @@ $(document).ready(function () {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $addTagButton.on('click', function (e) {
+    $addPictureButton.on('click', function (e) {
         e.preventDefault();
         // add a new tag form (see next code block)
         addPicturesForm($collectionHolder, $newLinkLi);
@@ -52,27 +52,57 @@ $(document).ready(function () {
 
 function addPicturesForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
-
+    let prototype = $collectionHolder.data('prototype');
     // get the new index
-    var index = $collectionHolder.data('index');
-
-    var newForm = prototype;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
+    let index = $collectionHolder.data('index');
+    let newForm = prototype;
     newForm = newForm.replace(/__name__/g, index);
-
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
-
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    let $newFormLi = $('<li></li>').append(newForm);
     $newLinkLi.before($newFormLi);
+}
+
+//=============================================Ajout de steps===========================================//
+
+//Ajout d'input pour les images
+var $collectionStepHolder;
+//setup an "add a picture" link
+var $addStepButton = $('<button type="button" class="add_step_link btn btn-success">Ajouter une étape</button>');
+var $newStepLinkLi = $('<li></li>').append($addStepButton);
+
+$(document).ready(function () {
+    //Get the ul that holds the collection of tags
+    $collectionStepHolder = $('ul.steps');
+
+    //Add the "add a step" anchor and li to the tags ul
+    $collectionStepHolder.append($newStepLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionStepHolder.data('index', $collectionStepHolder.find(':input').length);
+
+    $addStepButton.on('click', function (e) {
+        e.preventDefault();
+        // add a new tag form (see next code block)
+        addStepsForm($collectionStepHolder, $newStepLinkLi);
+
+    });
+});
+
+function addStepsForm($collectionStepHolder, $newStepLinkLi) {
+    // Get the data-prototype explained earlier
+    let prototype = $collectionStepHolder.data('prototype');
+    // get the new index
+    let index = $collectionHolder.data('index');
+    let newForm = prototype;
+    newForm = newForm.replace(/__name__/g, index);
+    // increase the index with one for the next item
+    $collectionStepHolder.data('index', index + 1);
+    // Display the form in the page in an li, before the "Add a tag" link li
+    let $newFormLi = $('<li></li>').append(newForm);
+    $newStepLinkLi.before($newFormLi);
 }
 
 

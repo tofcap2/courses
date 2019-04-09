@@ -72,7 +72,7 @@ class Step
     /**
      * @return int
      */
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
@@ -92,7 +92,7 @@ class Step
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }

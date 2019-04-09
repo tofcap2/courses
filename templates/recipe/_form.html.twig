@@ -2,11 +2,16 @@
 
     <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
         {% for picture in form.pictures %}
-            <li>{{ picture.filename }}</li>
+            <li>{{ picture.filename}}</li>
+        {% endfor %}
+    </ul>
+    <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+        {% for step in form.step %}
+            <li>{{ step}}</li>
         {% endfor %}
     </ul>
 
 {{ form_widget(form) }}
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

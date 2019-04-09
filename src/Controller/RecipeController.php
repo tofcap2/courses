@@ -36,6 +36,8 @@ class RecipeController extends BaseController
     public function new(Request $request): Response
     {
         $recipe = new Recipe();
+//        $picture = new Picture();
+//        $picture->setRecipe($this->getUser());
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 

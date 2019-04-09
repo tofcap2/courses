@@ -14,7 +14,6 @@ class StepType extends AbstractType
         $builder
             ->add('number')
             ->add('content')
-            ->add('recipe')
         ;
     }
 

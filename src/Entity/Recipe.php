@@ -130,6 +130,7 @@ class Recipe
     public function __construct()
     {
         $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -338,10 +339,31 @@ class Recipe
 
     /**
      * @param mixed $pictures
+     * @return Recipe
      */
-    public function setPictures($pictures): void
+    public function setPictures(ArrayCollection $pictures)
     {
         $this->pictures = $pictures;
+        return $this;
+    }
+
+    /**
+     * @param Picture $pictures
+     * @return $this
+     */
+    public function addPicture(Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+        $pictures->setRecipe($this);
+        return $this;
+    }
+
+    /**
+     * @param Picture $pictures
+     */
+    public function removePicture(Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
     }
 
     /**

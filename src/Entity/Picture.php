@@ -90,7 +90,7 @@ class Picture
     /**
      * @return string
      */
-    public function getFilename(): string
+    public function getFilename(): ?string
     {
         return $this->filename;
     }
@@ -117,7 +117,7 @@ class Picture
      * @param string|null $alt
      * @return Picture
      */
-    public function setAlt(?string $alt): Picture
+    public function setAlt(string $alt): Picture
     {
         $this->alt = $alt;
         return $this;
@@ -126,7 +126,7 @@ class Picture
     /**
      * @return Recipe
      */
-    public function getRecipe(): Recipe
+    public function getRecipe(): ?Recipe
     {
         return $this->recipe;
     }
