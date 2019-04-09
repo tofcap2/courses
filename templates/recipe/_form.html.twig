@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+        {% for picture in form.pictures %}
+            <li>{{ picture.filename }}</li>
+        {% endfor %}
+    </ul>
+
+{{ form_widget(form) }}
+
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
