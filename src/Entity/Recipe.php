@@ -105,7 +105,7 @@ class Recipe
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="recipe")
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="recipe", cascade={"persist"})
      */
     private $pictures;
 
@@ -113,7 +113,7 @@ class Recipe
     /**
      * @var int
      *
-     * @ORM\OneToMany(targetEntity="Step", mappedBy="recipe")
+     * @ORM\OneToMany(targetEntity="Step", mappedBy="recipe", cascade={"persist"})
      */
     private $step;
 
@@ -388,7 +388,7 @@ class Recipe
      */
     public function addStep(Step $steps)
     {
-        $this->steps[] = $steps;
+        $this->step[] = $steps;
         $steps->setRecipe($this);
         return $this;
     }

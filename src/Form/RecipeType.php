@@ -26,7 +26,6 @@ class RecipeType extends AbstractType
             ->add('servings')
             ->add('category')
             ->add('difficulty')
-            ->add('user')
             ->add('tag')
             ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,

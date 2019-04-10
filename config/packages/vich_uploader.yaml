@@ -4,6 +4,5 @@ vich_uploader:
         pictures_images:
             uri_prefix:         '%app.path.uploads_dir%'
             upload_destination: '%kernel.project_dir%/public%app.path.uploads_dir%'
-            namer: vich_uploader.namer_uniqid
 
 
