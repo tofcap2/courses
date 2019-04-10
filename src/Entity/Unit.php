@@ -62,8 +62,10 @@ class Unit
         $this->label = $label;
     }
 
-
-
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
 
 
 }

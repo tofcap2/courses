@@ -1,17 +1,30 @@
 {{ form_start(form) }}
-
-    <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
-        {% for picture in form.pictures %}
-            <li>{{ picture.filename}}</li>
-        {% endfor %}
-    </ul>
-    <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
-        {% for step in form.step %}
-            <li>{{ recipe.step}}</li>
-        {% endfor %}
-    </ul>
-
-{{ form_widget(form) }}
+    <div class="form-recipeNew d-flex flex-column-reverse">
+        <div class="form-recipeIngredient">
+            <ul class="recipeIngredient" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
+                {% for recipeIngredient in form.recipeIngredient %}
+                    <li>{{ recipe.recipeIngredient}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="form-pictures">
+            <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                {% for picture in form.pictures %}
+                    <li>{{ picture.filename}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="form-steps">
+            <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+                {% for step in form.step %}
+                    <li>{{ recipe.step}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="form-widget">
+            {{ form_widget(form) }}
+        </div>
+    </div>
 
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

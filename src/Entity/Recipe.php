@@ -120,7 +120,7 @@ class Recipe
     /**
      * @var RecipeIngredient
      *
-     * @ORM\OneToMany(targetEntity="RecipeIngredient", mappedBy="recipe")
+     * @ORM\OneToMany(targetEntity="RecipeIngredient", mappedBy="recipe", cascade={"persist"})
      */
     private $recipeIngredient;
 
@@ -407,6 +407,17 @@ class Recipe
     public function getRecipeIngredient()
     {
         return $this->recipeIngredient;
+    }
+
+    /**
+     * @param RecipeIngredient $recipeIngredient
+     * @return $this
+     */
+    public function addRecipeIngredient(RecipeIngredient $recipeIngredient)
+    {
+        $this->recipeIngredient[] = $recipeIngredient;
+        $recipeIngredient->setRecipe($this);
+        return $this;
     }
 
     /**

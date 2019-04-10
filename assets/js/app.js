@@ -111,7 +111,7 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     // Get the data-prototype explained earlier
     let prototype = $collectionStepHolder.data('prototype');
     // get the new index
-    let index = $collectionHolder.data('index');
+    let index = $collectionStepHolder.data('index');
     let newForm = prototype;
     newForm = newForm.replace(/__name__/g, index);
     // increase the index with one for the next item
@@ -119,6 +119,60 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     let $newFormLi = $('<li></li>').append(newForm);
     $newStepLinkLi.before($newFormLi);
+    // add a delete link to the new form
+    addStepFormDeleteLink($newLinkLi);
+}
+
+function addStepFormDeleteLink($pictureFormLi) {
+    var $removeStepButton = $('<button type="button" class="remove_picture_link btn btn-danger">Retirer une étape</button>');
+    $stepFormLi.append($removePictureButton);
+
+    $removeStepButton.on('click', function (e) {
+        $stepFormLi.remove();
+    });
+}
+
+//=============================================Ajout d'ingrédients===========================================//
+
+//Ajout d'input pour les images
+var $collectionIngredientHolder;
+//setup an "add a picture" link
+var $addIngredientButton = $('<button type="button" class="add_ingredient_link btn btn-success">Ajouter un ingredient</button>');
+var $newIngredientLinkLi = $('<li></li>').append($addIngredientButton);
+
+$(document).ready(function () {
+    //Get the ul that holds the collection of tags
+    $collectionIngredientHolder = $('ul.ingredients');
+
+    //Add the "add a step" anchor and li to the tags ul
+    $collectionIngredientHolder.append($newIngredientLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionIngredientHolder.data('index', $collectionIngredientHolder.find(':input').length);
+
+    $addIngredientButton.on('click', function (e) {
+        e.preventDefault();
+        // add a new tag form (see next code block)
+        addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi);
+
+    });
+});
+
+function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
+    // Get the data-prototype explained earlier
+    let prototype = $collectionIngredientHolder.data('prototype');
+    // get the new index
+    let index = $collectionIngredientHolder.data('index');
+    let newForm = prototype;
+    newForm = newForm.replace(/__name__/g, index);
+    // increase the index with one for the next item
+    $collectionIngredientHolder.data('index', index + 1);
+    // Display the form in the page in an li, before the "Add a tag" link li
+    let $newFormLi = $('<li></li>').append(newForm);
+    $newIngredientLinkLi.before($newFormLi);
+    // add a delete link to the new form
+    addPicturesFormDeleteLink($newIngredientLinkLi);
 }
 
 

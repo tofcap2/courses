@@ -86,5 +86,10 @@ class Ingredient
         $this->ingredientCategory = $ingredientCategory;
     }
 
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
+
 
 }

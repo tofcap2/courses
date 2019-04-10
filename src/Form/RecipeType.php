@@ -42,6 +42,13 @@ class RecipeType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
             ])
+            ->add('recipeIngredient', CollectionType::class, [
+                'entry_type' => RecipeIngredientType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'prototype' => true,
+                'by_reference' => false,
+            ])
         ;
     }
 
