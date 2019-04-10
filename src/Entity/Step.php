@@ -87,8 +87,6 @@ class Step
         return $this;
     }
 
-
-
     /**
      * @return string
      */

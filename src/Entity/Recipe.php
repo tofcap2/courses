@@ -383,6 +383,25 @@ class Recipe
     }
 
     /**
+     * @param Step $steps
+     * @return $this
+     */
+    public function addStep(Step $steps)
+    {
+        $this->steps[] = $steps;
+        $steps->setRecipe($this);
+        return $this;
+    }
+
+    /**
+     * @param Step $steps
+     */
+    public function removeStep(Step $steps)
+    {
+        $this->steps->removeElement($steps);
+    }
+
+    /**
      * @return mixed
      */
     public function getRecipeIngredient()

@@ -7,7 +7,7 @@
     </ul>
     <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
         {% for step in form.step %}
-            <li>{{ step}}</li>
+            <li>{{ recipe.step}}</li>
         {% endfor %}
     </ul>
 
