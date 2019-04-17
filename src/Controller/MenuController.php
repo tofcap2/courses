@@ -53,6 +53,7 @@ class MenuController extends BaseController
 
     /**
      * @Route("/show", name="menu_show", methods={"GET"})
+     * @param Menu $menu
      * @return Response
      */
     public function show(Menu $menu): Response
