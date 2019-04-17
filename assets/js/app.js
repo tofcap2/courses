@@ -38,11 +38,6 @@ $(document).ready(function () {
     //Add the "add a picture" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
 
-    //Add a delete link to all of existing picture form li elements
-    $collectionHolder.find('li').each(function(){
-        addPicturesFormDeleteLink($(this));
-    });
-
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
@@ -67,16 +62,13 @@ function addPicturesForm($collectionHolder, $newLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     let $newFormLi = $('<li></li>').append(newForm);
     $newLinkLi.before($newFormLi);
-    // add a delete link to the new form
-    addPicturesFormDeleteLink($newLinkLi);
-}
+    // Also add a remove button
+    $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer la photo</button>')
+    $newLinkLi.before($newFormLi);
 
-function addPicturesFormDeleteLink($pictureFormLi){
-    var $removePictureButton = $('<button type="button" class="remove_picture_link btn btn-danger">Retirer une photo</button>');
-    $pictureFormLi.append($removePictureButton);
-
-    $removePictureButton.on('click', function (e) {
-        $pictureFormLi.remove();
+    $('.remove_picture').click(function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
     });
 }
 
@@ -103,7 +95,6 @@ $(document).ready(function () {
         e.preventDefault();
         // add a new tag form (see next code block)
         addStepsForm($collectionStepHolder, $newStepLinkLi);
-
     });
 });
 
@@ -120,15 +111,14 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     let $newFormLi = $('<li></li>').append(newForm);
     $newStepLinkLi.before($newFormLi);
     // add a delete link to the new form
-    addStepFormDeleteLink($newLinkLi);
-}
 
-function addStepFormDeleteLink($pictureFormLi) {
-    var $removeStepButton = $('<button type="button" class="remove_picture_link btn btn-danger">Retirer une étape</button>');
-    $stepFormLi.append($removePictureButton);
+    // Also add a remove button
+    $newFormLi.append('<button type="button" class="remove_step btn btn-danger">Retirer l\'étape</button>')
+    $newLinkLi.before($newFormLi);
 
-    $removeStepButton.on('click', function (e) {
-        $stepFormLi.remove();
+    $('.remove_step').click(function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
     });
 }
 

@@ -5,8 +5,12 @@ namespace App\Form;
 use App\Entity\Picture;
 use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -20,11 +24,11 @@ class RecipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('preparationTime')
-            ->add('cookingTime')
-            ->add('servings')
-            ->add('category')
+            ->add('title', TextType::class, ['label' => 'Titre'])
+            ->add('preparationTime', TimeType::class, ['label' => 'Temps de préparation'])
+            ->add('cookingTime', TimeType::class, ['label' => 'Temps de cuisson'])
+            ->add('servings', NumberType::class, ['label' => 'Nombre de personnes'])
+            ->add('category', TextType::class, ['label' => 'Catégorie'])
             ->add('difficulty')
             ->add('tag')
             ->add('pictures', CollectionType::class, [
