@@ -21,6 +21,13 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="form-ingredients">
+            <ul class="ingredients" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+                {% for recipeIngredient in form.recipeIngredient %}
+                    <li>{{ recipe.recipeIngredient}}</li>
+                {% endfor %}
+            </ul>
+        </div>
         <div class="form-widget">
             {{ form_widget(form) }}
         </div>

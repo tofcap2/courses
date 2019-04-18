@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Picture;
 use App\Entity\Recipe;
 use App\Entity\RecipeIngredient;
+use App\Entity\RecipeSearch;
 use App\Entity\Step;
+use App\Form\RecipeSearchType;
 use App\Form\RecipeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +20,8 @@ class RecipeController extends BaseController
 {
     /**
      * @Route("/", name="recipe_index", methods={"GET"})
+     * @param Request $request
+     * @return Response
      */
     public function index(): Response
     {
