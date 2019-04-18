@@ -11,13 +11,5 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RecipeRepository extends ServiceEntityRepository
 {
-/*
-    public function findPictureByRecipe($id): array
-    {
-        $qb = $this->createQueryBuilder('p');
-        $qb->join('p.recipe', 'r');
 
-        return $qb->getQuery()->getResult();
-    }
-*/
 }
