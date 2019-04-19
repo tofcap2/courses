@@ -60,7 +60,7 @@ class RecipeIngredient
 
     public function __toString()
     {
-        return $this->getUnit();
+        return $this->getIngredient();
     }
 
     /**

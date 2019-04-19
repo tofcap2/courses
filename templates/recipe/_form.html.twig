@@ -1,37 +1,67 @@
 {{ form_start(form) }}
-    <div class="form-recipeNew d-flex flex-column-reverse">
-        <div class="form-recipeIngredient">
-            <ul class="recipeIngredient" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
-                {% for recipeIngredient in form.recipeIngredient %}
-                    <li>{{ recipe.recipeIngredient}}</li>
-                {% endfor %}
-            </ul>
+    <div class="d-flex flex-column-reverse">
+        <div>
+            <div class="form-recipeIngredient">
+                <ul class="recipeIngredient" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
+                    {% for recipeIngredient in form.recipeIngredient %}
+                        <li>{{ recipe.recipeIngredient}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="form-steps">
+                <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+                    {% for step in form.step %}
+                        <li>{{ recipe.step}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="form-pictures">
+                <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                    {% for picture in form.pictures %}
+                        <li>{{ picture.filename}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <div class="form-pictures">
-            <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
-                {% for picture in form.pictures %}
-                    <li>{{ picture.filename}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="form-steps">
-            <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
-                {% for step in form.step %}
-                    <li class="form-steps-li">{{ recipe.step}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="form-ingredients">
-            <ul class="ingredients" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
-                {% for recipeIngredient in form.recipeIngredient %}
-                    <li>{{ recipe.recipeIngredient}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="form-widget">
-            {{ form_widget(form) }}
+        <div>
+            <div class="form-title">
+                <label for="">Titre de la recette</label>
+                {{ form_widget(form.title) }}
+            </div>
+            <div class="form-time d-flex mt-3 mb-3 text-center">
+                <div class="form-preparation mr-4">
+                    <label for="">Temps de préparation</label>
+                    {{ form_widget(form.preparationTime) }}
+                </div>
+                <div class="form-cooking">
+                    <label for="">Temps de cuisson</label>
+                    {{ form_widget(form.cookingTime) }}
+                </div>
+            </div>
+            <div class="d-flex text-center">
+                <div class="form-category mr-4">
+                    <label for="">Catégorie</label>
+                    {{ form_widget(form.category) }}
+                </div>
+                <div class="form-difficulty mr-4">
+                    <label for="">Difficulté</label>
+                    {{ form_widget(form.difficulty) }}
+                </div>
+                <div class="form-servings">
+                    <label for="">Nombre de personnes</label>
+                    {{ form_widget(form.servings) }}
+                </div>
+                <div class="form-tag">
+                    <label for="">Type d'alimentation</label>
+                    {{ form_widget(form.tag) }}
+                </div>
+            </div>
+            <div class="form-none d-none">
+                {{ form_widget(form.pictures) }}
+                {{ form_widget(form.step) }}
+                {{ form_widget(form.recipeIngredient) }}
+            </div>
         </div>
     </div>
-
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

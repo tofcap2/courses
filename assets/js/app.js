@@ -23,55 +23,6 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
-//=============================================Ajout d'images===========================================//
-
-//Ajout d'input pour les images
-var $collectionHolder;
-//setup an "add a picture" link
-var $addPictureButton = $('<button type="button" class="add_picture_link btn btn-success">Ajouter une photo</button>');
-var $newLinkLi = $('<li></li>').append($addPictureButton);
-
-$(document).ready(function () {
-    //Get the ul that holds the collection of tags
-    $collectionHolder = $('ul.pictures');
-
-    //Add the "add a picture" anchor and li to the tags ul
-    $collectionHolder.append($newLinkLi);
-
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-    $addPictureButton.on('click', function (e) {
-        e.preventDefault();
-        // add a new tag form (see next code block)
-        addPicturesForm($collectionHolder, $newLinkLi);
-
-    });
-});
-
-function addPicturesForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
-    let prototype = $collectionHolder.data('prototype');
-    // get the new index
-    let index = $collectionHolder.data('index');
-    let newForm = prototype;
-    newForm = newForm.replace(/__name__/g, index);
-    // increase the index with one for the next item
-    $collectionHolder.data('index', index + 1);
-    // Display the form in the page in an li, before the "Add a tag" link li
-    let $newFormLi = $('<li></li>').append(newForm);
-    $newLinkLi.before($newFormLi);
-    // Also add a remove button
-    $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer la photo</button>')
-    $newLinkLi.before($newFormLi);
-
-    $('.remove_picture').click(function (e) {
-        e.preventDefault();
-        $(this).parent().remove();
-    });
-}
-
 //=============================================Ajout de steps===========================================//
 
 //Ajout d'input pour les images
@@ -108,7 +59,7 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     // increase the index with one for the next item
     $collectionStepHolder.data('index', index + 1);
     // Display the form in the page in an li, before the "Add a tag" link li
-    let $newFormLi = $('<li></li>').append(newForm);
+    let $newFormLi = $('<li class="step"></li>').append(newForm);
     $newStepLinkLi.before($newFormLi);
 
     // Also add a remove button
@@ -157,7 +108,7 @@ function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
     // increase the index with one for the next item
     $collectionIngredientHolder.data('index', index + 1);
     // Display the form in the page in an li, before the "Add a tag" link li
-    let $newFormLi = $('<li></li>').append(newForm);
+    let $newFormLi = $('<li class="ingredient"></li>').append(newForm);
     $newIngredientLinkLi.before($newFormLi);
 
     // Also add a remove button
@@ -165,6 +116,55 @@ function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
     $newLinkLi.before($newFormLi);
 
     $('.remove_ingredient').click(function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
+    });
+}
+
+//=============================================Ajout d'images===========================================//
+
+//Ajout d'input pour les images
+var $collectionHolder;
+//setup an "add a picture" link
+var $addPictureButton = $('<button type="button" class="add_picture_link btn btn-success">Ajouter une photo</button>');
+var $newLinkLi = $('<li></li>').append($addPictureButton);
+
+$(document).ready(function () {
+    //Get the ul that holds the collection of tags
+    $collectionHolder = $('ul.pictures');
+
+    //Add the "add a picture" anchor and li to the tags ul
+    $collectionHolder.append($newLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $addPictureButton.on('click', function (e) {
+        e.preventDefault();
+        // add a new tag form (see next code block)
+        addPicturesForm($collectionHolder, $newLinkLi);
+
+    });
+});
+
+function addPicturesForm($collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    let prototype = $collectionHolder.data('prototype');
+    // get the new index
+    let index = $collectionHolder.data('index');
+    let newForm = prototype;
+    newForm = newForm.replace(/__name__/g, index);
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+    // Display the form in the page in an li, before the "Add a tag" link li
+    let $newFormLi = $('<li></li>').append(newForm);
+    $newLinkLi.before($newFormLi);
+    // Also add a remove button
+    $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer la photo</button>')
+    $newLinkLi.before($newFormLi);
+
+    $('.remove_picture').click(function (e) {
         e.preventDefault();
         $(this).parent().remove();
     });

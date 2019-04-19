@@ -13,7 +13,6 @@ class TagType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('recipe')
             ->add('user')
         ;
     }

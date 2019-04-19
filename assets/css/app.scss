@@ -2,6 +2,13 @@
 @import "~font-awesome/scss/font-awesome";
 @import "~select2/dist/css/select2.min.css";
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import "styles/header";
+@import "styles/recipe";
+@import "styles/login";
+@import "styles/recipe_show";
+@import "styles/register";
+@import "styles/new_recipe";
+@import "styles/user";
 
 
 * {
@@ -15,133 +22,7 @@ a:hover{
     text-decoration: none;
 }
 
-/*===============HEADER================*/
-.header-menu{
-    color: #000;
+ul{
+    list-style-type: none;
+    text-decoration: none;
 }
-.img-header{
-    width: 40%;
-}
-
-/*===============RECIPE================*/
-
-.recipe-container{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.card-recipe{
-    text-align: -webkit-center;
-}
-
-.card-img {
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-
-    img {
-        max-width: 100%;
-        transition: 0.5s;
-    }
-
-    img:hover{
-    transform: scale(1.1);
-    }
-}
-
-.card-body{
-    padding: 10px;
-    text-align: left;
-}
-
-.card-title{
-    color: #000;
-}
-
-.card-text{
-    color: #000;
-}
-
-/*===============LOGIN================*/
-
-.login{
-    background-color: #F2F2F2;
-    border-radius: 20px;
-
-    button{
-        width: 150px;
-    }
-
-    a{
-        width: 150px;
-    }
-}
-
-/*===============RECIPE SHOW================*/
-
-.recipe-show{
-    background-color: #F2F2F2;
-
-    h1{
-        font-size: 2em;
-    }
-
-    td{
-        font-size: 0.8em;
-    }
-}
-
-/*===============USER================*/
-
-.user-rens img{
-    width: 10%;
-    height: 20%;
-}
-
-.add-recipe{
-    height:50%;
-}
-
-/*===============NEW RECIPE================*/
-
-#recipe{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.form-steps-li{
-    display: flex;
-}
-
-/*===============REGISTER================*/
-
-.register{
-    display: flex;
-    flex-flow: column;
-    background-color: #F2F2F2;
-    border-radius: 20px;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
-
-
-    div{
-        display: flex;
-        flex-flow: column;
-        padding-top: 20px;
-        align-items: center;
-        width: 100%;
-
-        input{
-            width: 50%;
-            border-radius: 20px;
-            height: 70%;
-        }
-    }
-
-    button{
-        margin-top: 20px;
-    }
-}
-
-
