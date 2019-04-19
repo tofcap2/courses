@@ -17,12 +17,12 @@
         <div class="form-steps">
             <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
                 {% for step in form.step %}
-                    <li>{{ recipe.step}}</li>
+                    <li class="form-steps-li">{{ recipe.step}}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="form-ingredients">
-            <ul class="ingredients" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+            <ul class="ingredients" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
                 {% for recipeIngredient in form.recipeIngredient %}
                     <li>{{ recipe.recipeIngredient}}</li>
                 {% endfor %}

@@ -110,7 +110,6 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     let $newFormLi = $('<li></li>').append(newForm);
     $newStepLinkLi.before($newFormLi);
-    // add a delete link to the new form
 
     // Also add a remove button
     $newFormLi.append('<button type="button" class="remove_step btn btn-danger">Retirer l\'étape</button>')
@@ -132,7 +131,7 @@ var $newIngredientLinkLi = $('<li></li>').append($addIngredientButton);
 
 $(document).ready(function () {
     //Get the ul that holds the collection of tags
-    $collectionIngredientHolder = $('ul.ingredients');
+    $collectionIngredientHolder = $('ul.recipeIngredient');
 
     //Add the "add a step" anchor and li to the tags ul
     $collectionIngredientHolder.append($newIngredientLinkLi);
@@ -145,7 +144,6 @@ $(document).ready(function () {
         e.preventDefault();
         // add a new tag form (see next code block)
         addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi);
-
     });
 });
 
@@ -161,8 +159,13 @@ function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     let $newFormLi = $('<li></li>').append(newForm);
     $newIngredientLinkLi.before($newFormLi);
-    // add a delete link to the new form
-    addPicturesFormDeleteLink($newIngredientLinkLi);
+
+    // Also add a remove button
+    $newFormLi.append('<button type="button" class="remove_ingredient btn btn-danger">Retirer l\'ingrédient</button>')
+    $newLinkLi.before($newFormLi);
+
+    $('.remove_ingredient').click(function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
+    });
 }
-
-
