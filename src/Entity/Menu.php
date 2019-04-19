@@ -89,7 +89,7 @@ class Menu
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
@@ -107,7 +107,7 @@ class Menu
     /**
      * @return Recipe
      */
-    public function getStarter(): Recipe
+    public function getStarter(): ?Recipe
     {
         return $this->starter;
     }
@@ -125,7 +125,7 @@ class Menu
     /**
      * @return Recipe
      */
-    public function getMainCourse(): Recipe
+    public function getMainCourse(): ?Recipe
     {
         return $this->mainCourse;
     }
@@ -143,7 +143,7 @@ class Menu
     /**
      * @return Recipe
      */
-    public function getDessert(): Recipe
+    public function getDessert(): ?Recipe
     {
         return $this->dessert;
     }
@@ -161,7 +161,7 @@ class Menu
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }

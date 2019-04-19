@@ -17,6 +17,7 @@
         {% for menu in menus %}
             <tr>
                 <td>{{ menu.id }}</td>
+                <td>{{ menu.starter }}</td>
                 <td>{{ menu.date ? menu.date|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('menu_show', {'id': menu.id}) }}">show</a>
