@@ -66,7 +66,7 @@ class RecipeIngredient
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -84,7 +84,7 @@ class RecipeIngredient
     /**
      * @return string
      */
-    public function getQte(): string
+    public function getQte(): ?string
     {
         return $this->qte;
     }
@@ -102,7 +102,7 @@ class RecipeIngredient
     /**
      * @return Ingredient
      */
-    public function getIngredient(): Ingredient
+    public function getIngredient(): ?Ingredient
     {
         return $this->ingredient;
     }
@@ -120,7 +120,7 @@ class RecipeIngredient
     /**
      * @return Recipe
      */
-    public function getRecipe(): Recipe
+    public function getRecipe(): ?Recipe
     {
         return $this->recipe;
     }
