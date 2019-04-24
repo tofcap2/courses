@@ -44,7 +44,7 @@ class IngredientController extends BaseController
             return $this->redirectToRoute('ingredient_index');
         }
 
-        return $this->render('ingredient/new.html.twig', [
+        return $this->render('ingredient/_form.html.twig', [
             'ingredient' => $ingredient,
             'form' => $form->createView(),
         ]);

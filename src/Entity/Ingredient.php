@@ -57,7 +57,7 @@ class Ingredient
     /**
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
@@ -73,7 +73,7 @@ class Ingredient
     /**
      * @return IngredientCategory
      */
-    public function getIngredientCategory(): IngredientCategory
+    public function getIngredientCategory(): ?IngredientCategory
     {
         return $this->ingredientCategory;
     }

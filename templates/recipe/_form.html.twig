@@ -1,12 +1,25 @@
 {{ form_start(form) }}
     <div class="d-flex flex-column-reverse">
         <div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ajouter un ingrédient</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {{ render(controller('App\\Controller\\IngredientController:new')) }}
+                    </div>
+                </div>
+            </div>
             <div class="form-recipeIngredient">
                 <ul class="recipeIngredient" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
                     {% for recipeIngredient in form.recipeIngredient %}
                         <li>{{ recipe.recipeIngredient}}</li>
                     {% endfor %}
-                </{l>
+                </ul>
             </div>
             <div class="form-steps">
                 <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">

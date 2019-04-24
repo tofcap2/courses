@@ -64,5 +64,10 @@ class IngredientCategory
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
+
 
 }
