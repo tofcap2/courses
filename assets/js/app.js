@@ -64,7 +64,7 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
 
     // Also add a remove button
     $newFormLi.append('<button type="button" class="remove_step btn btn-danger">Retirer l\'étape</button>')
-    $newLinkLi.before($newFormLi);
+    $newStepLinkLi.before($newFormLi);
 
     $('.remove_step').click(function (e) {
         e.preventDefault();
@@ -113,7 +113,7 @@ function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
 
     // Also add a remove button
     $newFormLi.append('<button type="button" class="remove_ingredient btn btn-danger">Retirer l\'ingrédient</button>')
-    $newLinkLi.before($newFormLi);
+    $newIngredientLinkLi.before($newFormLi);
 
     $('.remove_ingredient').click(function (e) {
         e.preventDefault();
@@ -157,14 +157,20 @@ function addPicturesForm($collectionHolder, $newPictureLinkLi) {
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
     // Display the form in the page in an li, before the "Add a tag" link li
-    let $newFormLi = $('<li></li>').append(newForm);
+    let $newFormLi = $('<li class="picture"></li>').append(newForm);
     $newPictureLinkLi.before($newFormLi);
     // Also add a remove button
     $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer la photo</button>')
-    $newLinkLi.before($newFormLi);
+    $newPictureLinkLi.before($newFormLi);
 
     $('.remove_picture').click(function (e) {
         e.preventDefault();
         $(this).parent().remove();
     });
 }
+
+//=============================================Ajout de newIngredient===========================================//
+
+$('.newIngredient').on('click', () => {
+    $('#exampleModal').modal('show')
+})

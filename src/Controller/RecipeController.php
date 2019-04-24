@@ -9,6 +9,8 @@ use App\Entity\RecipeSearch;
 use App\Entity\Step;
 use App\Form\RecipeSearchType;
 use App\Form\RecipeType;
+use Doctrine\ORM\Mapping\Id;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,19 +64,21 @@ class RecipeController extends BaseController
 
     /**
      * @Route("/{id}", name="recipe_show", methods={"GET"})
+     * @param Recipe $recipe
+     * @return Response
      */
-    public function show(Recipe $recipe, Picture $picture, Step $step, RecipeIngredient $recipeIngredient): Response
+    public function show(Recipe $recipe): Response
     {
         return $this->render('recipe/show.html.twig', [
-            'recipe' => $recipe,
-            'picture' => $picture,
-            'step' => $step,
-            'recipeIngredient' => $recipeIngredient
+            'recipe' => $recipe
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="recipe_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return Response
      */
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -107,6 +111,12 @@ class RecipeController extends BaseController
         }
 
         return $this->redirectToRoute('recipe_index');
+    }
+
+    public function addFavorite(Request $request, Recipe $recipe)
+    {
+
+
     }
 
 }

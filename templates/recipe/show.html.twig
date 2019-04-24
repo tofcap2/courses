@@ -9,7 +9,7 @@
         <button class="btn btn-success btn-sm col-6 col-sm-4 col-md-2 ml-3">Ajouter à mes favoris</button>
     </div>
     <div class="row">
-        <img src="{{ asset('uploads/' ~ picture.filename) }}" class="img-thumbnail ml-3 mt-5" alt="{{ recipe.title }}">
+        <img src="{{ asset('uploads/' ~ recipe.pictures[0].filename) }}" class="img-thumbnail ml-3 mt-5" alt="{{ recipe.title }}">
         <div class="mt-5 ml-5">
             <h5 class="mt-3">Préparation pour : {{ recipe.servings }} personnes</h5>
             <h5 class="mt-3">Temps de préparation : {{ recipe.preparationTime ? recipe.preparationTime|date('H:i:s') : '' }}</h5>

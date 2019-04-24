@@ -27,6 +27,12 @@
       >label{
         margin-right: 10px;
       }
+
+      >button{
+        background-color: white;
+        border: none;
+        font-size: 1.5em;
+      }
     }
   }
 }
@@ -44,6 +50,29 @@
     display: flex;
 
     >div{
+      margin: 10px;
+
+      >label{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.picture{
+  display: flex;
+  margin: 5px;
+  align-items: center;
+
+  button{
+    height: 70%;
+  }
+
+  >div:first-of-type{
+    display: flex;
+
+    >div{
+      display: flex;
       margin: 10px;
 
       >label{
