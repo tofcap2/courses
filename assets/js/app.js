@@ -169,8 +169,25 @@ function addPicturesForm($collectionHolder, $newPictureLinkLi) {
     });
 }
 
-//=============================================Ajout de newIngredient===========================================//
+//=============================================Select catégorie===========================================//
 
-$('.newIngredient').on('click', () => {
-    $('#exampleModal').modal('show')
+$(document).ready(function() {
+    $('.tag-select').select2();
+});
+
+//=============================================Pop over===========================================//
+
+$(function () {
+    $('.example-popover').popover({
+        container: 'body'
+    })
 })
+
+//=============================================Ajout de newIngredient===========================================//
+//Apparition de la modal qui fonctionne
+/*$('.newIngredient').on('click', () => {
+    $('#exampleModal').modal('show')
+})*/
+
+// Test avec envoie du formulaire avec Ajax
+

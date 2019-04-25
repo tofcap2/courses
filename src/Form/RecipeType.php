@@ -28,9 +28,9 @@ class RecipeType extends AbstractType
             ->add('preparationTime', TimeType::class, ['label' => 'Temps de préparation'])
             ->add('cookingTime', TimeType::class, ['label' => 'Temps de cuisson'])
             ->add('servings', NumberType::class, ['label' => 'Nombre de personnes'])
-            ->add('category')
-            ->add('difficulty')
-            ->add('tag')
+            ->add('category', null, ['attr' => ['class' => 'tag-select']])
+            ->add('difficulty', null, ['attr' => ['class' => 'tag-select']])
+            ->add('tag', null, ['multiple' => true, 'attr' => ['class' => 'tag-select']])
             ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],

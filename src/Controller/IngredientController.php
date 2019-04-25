@@ -28,7 +28,7 @@ class IngredientController extends BaseController
     }
 
     /**
-     * @Route("/new", name="ingredient_new", methods={"GET","POST"})
+     * @Route("/new", name="ingredient_new", methods={"GET","POST"}, condition="request.isXmlHttpRequest()")
      */
     public function new(Request $request): Response
     {
@@ -41,7 +41,7 @@ class IngredientController extends BaseController
             $entityManager->persist($ingredient);
             $entityManager->flush();
 
-            return $this->redirectToRoute('ingredient_index');
+            return new Response('success');
         }
 
         return $this->render('ingredient/_form.html.twig', [

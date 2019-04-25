@@ -8,7 +8,7 @@
         <h3>choix des menus</h3>
     <div class="d-flex flex-column">
         <label>Entrée - Plat
-        <input type="checkbox" aria-label="Checkbox for following text input"></label>
+        <input type="checkbox" id="test" aria-label="Checkbox for following text input"></label>
         <label>Entrée - Plat - Dessert
         <input type="checkbox" aria-label="Checkbox for following text input"></label>
     </div>
@@ -20,8 +20,7 @@
     <div class="menu d-flex">
         {% for menu in menus %}
             <div class=" d-flex flex-column">
-                <p>{{ menu.id }}</p>
-                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
+                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a><i class="fa fa-eye" data-toggle="popover"></i></p>
                 <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
                 <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
             </div>

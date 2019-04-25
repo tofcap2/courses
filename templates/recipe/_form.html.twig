@@ -1,4 +1,41 @@
 {{ form_start(form) }}
+
+{% block javascripts %}
+    <script>
+            console.log('js chargé')
+            $('#exampleModal').on('shown.bs.modal', () =>{
+                var modal =$(this);
+                $.ajax('{{path('ingredient_new')}}',{
+                    success: function (data) {
+                        modal.find('.modal')
+                    }
+                });
+            });
+            $(document).on('submit', 'form', function (e) {
+                e.preventDefault();
+
+                $form = $(e.target);
+                modal = $('#exampleModal');
+
+                var label = $('#ingredient_label').val();
+
+                var $submitButton = $form.find(':submit');
+
+                $form.ajaxSubmit({
+                    type: 'post',
+                    success: function (data) {
+                        if(data == 'ok') {
+                            $('ul').append('<li>' + label + '</li>');
+                            modal.modal('toggle');
+                        } else {
+                            modal.find('.modal-body').html(data);
+                        }
+                    }
+                });
+            });
+    </script>
+
+{% endblock %}
     <div class="d-flex flex-column-reverse">
         <div>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -10,7 +47,10 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        {{ render(controller('App\\Controller\\IngredientController:new')) }}
+                        <div class="modal-body">
+                            {{ render(controller('App\\Controller\\IngredientController:new')) }}
+                        </div>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Enregistrer</button>
                     </div>
                 </div>
             </div>
@@ -78,3 +118,6 @@
     </div>
     <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
+
+
+

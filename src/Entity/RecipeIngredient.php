@@ -93,7 +93,7 @@ class RecipeIngredient
      * @param string $qte
      * @return RecipeIngredient
      */
-    public function setQte(string $qte): RecipeIngredient
+    public function setQte(string $qte): ?RecipeIngredient
     {
         $this->qte = $qte;
         return $this;
