@@ -4,8 +4,11 @@
 
 {% block body %}
     <h1 class="text-center mt-5">Recettes</h1>
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+       aria-haspopup="true"
+       aria-expanded="false">Catégories <span class="caret"></span></a>
+    {{ render(controller('App\\Controller\\CategoryController::dropdown')) }}
     <div class="container recipe-container">
-
         {% for recipe in recipes %}
             <div class="col-xs-4 col-sm-8 col-md-4 card-recipe flex-wrap">
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}

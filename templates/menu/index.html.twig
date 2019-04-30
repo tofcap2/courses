@@ -14,47 +14,64 @@
     </div>
         {{ "now"|date("d/m/Y") }}
         {{ "now"|date_modify("+1 day")|date("d/m/Y") }}
-
     </div>
 
-    <div class="menu d-flex">
+    <div class="menu d-flex flex-column">
+
         {% for menu in menus %}
-            <div class=" d-flex flex-column">
-                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a><i class="fa fa-eye" data-toggle="popover"></i></p>
+            <div class=" d-flex flex-column card mr-1">
+                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
                 <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
                 <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
             </div>
         {% endfor %}
+        <div class="d-flex flex-column">
+            <table>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantité</th>
+                    <th>Unité</th>
+                </tr>
+                {% for menu in menus %}
+                    {% for Ingredient in menu.starter.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte | number_format(2,",")}}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for Ingredient in menu.mainCourse.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte }}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for Ingredient in menu.dessert.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte }}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Test</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for menu in menus %}
-            <tr>
-                <td>{{ menu.id }}</td>
-                <td>{{ menu.starter }}</td>
-                <td>{{ menu.mainCourse }}</td>
-                <td>{{ menu.date ? menu.date|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('menu_show', {'id': menu.id}) }}">show</a>
-                    <a href="{{ path('menu_edit', {'id': menu.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
     <a href="{{ path('menu_new') }}">Create new</a>
+
+    <a href="{{ path('vuecourse') }}" class="btn btn-success">Valider</a>
 {% endblock %}

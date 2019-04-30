@@ -98,4 +98,17 @@ class MenuController extends BaseController
 
         return $this->redirectToRoute('menu_index');
     }
+
+
+    /**
+     * @Route("/", name="vuecourse", methods="GET")
+     * @param Menu $menu
+     * @return Response
+     */
+    public function vuecourse(Menu $menu)
+    {
+        $ingredient = $this->getDoctrine()->getRepository(Menu::class)->editcourse(['menu' => $menu]);
+        return $this->render('vuecourse.html.twig', ['ingredient' => $ingredient, 'menu' => $menu]);
+    }
+
 }

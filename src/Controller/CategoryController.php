@@ -95,4 +95,11 @@ class CategoryController extends BaseController
 
         return $this->redirectToRoute('category_index');
     }
+
+    public function dropdown()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        return $this->render('category/dropdown.html.twig', ['categories' => $categories]);
+    }
 }

@@ -10,7 +10,6 @@ use App\Entity\Step;
 use App\Form\RecipeSearchType;
 use App\Form\RecipeType;
 use Doctrine\ORM\Mapping\Id;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +33,7 @@ class RecipeController extends BaseController
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);
+
     }
 
     /**
@@ -43,8 +43,6 @@ class RecipeController extends BaseController
     {
         $recipe = new Recipe();
         $recipe->setUser($this->getUser());
-//        $picture = new Picture();
-//        $picture->setRecipe($this->getUser());
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 

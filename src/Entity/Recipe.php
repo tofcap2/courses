@@ -109,7 +109,6 @@ class Recipe
      */
     private $pictures;
 
-
     /**
      * @var int
      *
@@ -421,17 +420,11 @@ class Recipe
     }
 
     /**
-     * @param mixed $recipeIngredient
+     * @param RecipeIngredient $recipeIngredient
      */
-    public function setRecipeIngredient($recipeIngredient): void
+    public function removeRecipeIngredient(RecipeIngredient $recipeIngredient)
     {
-        $this->recipeIngredient = $recipeIngredient;
+        $this->recipeIngredient->removeElement($recipeIngredient);
     }
-
-
-
-
-
-
 
 }
