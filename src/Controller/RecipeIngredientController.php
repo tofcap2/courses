@@ -95,4 +95,16 @@ class RecipeIngredientController extends BaseController
 
         return $this->redirectToRoute('recipe_ingredient_index');
     }
+
+    /**
+     * @Route("/vuecourse", name="vuecourse")
+     */
+    public function coursesList()
+    {
+        $recipeIngredients = $this->getDoctrine()->getRepository(RecipeIngredient::class)->groupIngredientBy();
+        dump($recipeIngredients);die();
+
+        return $this->render('editcourse/vuecourse.html.twig', [
+            'RecipeIngredient' => '$recipeIngredient']);
+    }
 }

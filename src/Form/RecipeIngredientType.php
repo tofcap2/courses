@@ -16,13 +16,13 @@ class RecipeIngredientType extends AbstractType
     {
         $builder
             ->add('qte', NumberType::class)
-            ->add('ingredient')
+            ->add('unit')
+            ->add('ingredient', null, ['attr' => ['id' => 'test']])
             ->add('test', ButtonType::class,  ['label' => false, 'attr' => [
-                'class' => 'fa fa-plus-circle newIngredient',
+                'class' => 'fa fa-plus-circle addIngredient',
                 'data-toggle' => 'modal',
                 'data-target' => '#exampleModal'
             ]])
-            ->add('unit')
         ;
     }
 

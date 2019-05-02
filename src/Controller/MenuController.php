@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Menu;
+use App\Entity\RecipeIngredient;
 use App\Form\MenuType;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,8 +108,10 @@ class MenuController extends BaseController
      */
     public function vuecourse(Menu $menu)
     {
-        $ingredient = $this->getDoctrine()->getRepository(Menu::class)->editcourse(['menu' => $menu]);
-        return $this->render('vuecourse.html.twig', ['ingredient' => $ingredient, 'menu' => $menu]);
+        //$ingredient = $this->getDoctrine()->getRepository(Menu::class)->editcourse(['menu' => $menu]);
+
+
+        return $this->render('vuecourse.html.twig', ['recipeIngredients' => $recipeIngredients, 'menu' => $menu]);
     }
 
 }

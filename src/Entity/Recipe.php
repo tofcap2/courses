@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * Recipe
  *
  * @ORM\Table(name="recipe", indexes={@ORM\Index(name="fk_recipe_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_recipe_category1_idx", columns={"category_id"}), @ORM\Index(name="fk_recipe_difficulty1_idx", columns={"difficulty_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RecipeRepository")
  * @Vich\Uploadable()
  * @ORM\HasLifecycleCallbacks()
  */

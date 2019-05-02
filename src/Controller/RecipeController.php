@@ -4,12 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Entity\Recipe;
-use App\Entity\RecipeIngredient;
 use App\Entity\RecipeSearch;
-use App\Entity\Step;
 use App\Form\RecipeSearchType;
 use App\Form\RecipeType;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,14 +21,19 @@ class RecipeController extends BaseController
      * @param Request $request
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $search =new RecipeSearch();
+        $form = $this->createForm(RecipeSearchType::class, $search);
+        $form->handleRequest($request);
+
         $recipes = $this->getDoctrine()
             ->getRepository(Recipe::class)
-            ->findAll();
+            ->findAll($search);
 
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
+            'form' => $form->createView(),
         ]);
 
     }
@@ -111,10 +113,6 @@ class RecipeController extends BaseController
         return $this->redirectToRoute('recipe_index');
     }
 
-    public function addFavorite(Request $request, Recipe $recipe)
-    {
 
-
-    }
 
 }

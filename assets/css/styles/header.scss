@@ -1,7 +1,25 @@
 /*===============HEADER================*/
 .header-menu{
   color: #000;
+
+  a{
+    font-family: Pacifico, sans-serif;
+    color: #000 !important;
+  }
+
+  a:hover{
+    color:rgba(0, 0, 0, 0.5);
+  }
 }
 .img-header{
   width: 40%;
 }
+
+.user-connect{
+  border-radius: 30px;
+  padding: 0 20px 0 20px ;
+  vertical-align: middle;
+  line-height: initial;
+  background-color: #74D14C;
+}
+

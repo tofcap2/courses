@@ -95,4 +95,6 @@ class IngredientController extends BaseController
 
         return $this->redirectToRoute('ingredient_index');
     }
+
+
 }

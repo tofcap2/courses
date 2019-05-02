@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * RecipeIngredient
- *
+ * @ORM\Entity(repositoryClass="App\Repository\RecipeIngredientRepository")
  * @ORM\Table(name="recipe_ingredient", indexes={@ORM\Index(name="fk_recipe_has_ingredient_recipe1_idx", columns={"recipe_id"}), @ORM\Index(name="fk_recipe_has_ingredient_ingredient1_idx", columns={"ingredient_id"}), @ORM\Index(name="fk_recipe_has_ingredient_unit1_idx", columns={"unit_id"})})
  * @ORM\Entity
  */

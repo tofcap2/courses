@@ -181,10 +181,30 @@ $(document).ready(function() {
 
 //=============================================Ajout de newIngredient===========================================//
 //Apparition de la modal qui fonctionne
-$('.newIngredient').on('click', () => {
+$('.addIngredient').on('click', () => {
     $('#exampleModal').modal('show')
 })
 
 // Test avec envoie du formulaire avec Ajax
 
+$(function () {
+    $("#newIngredient").submit(function (e) {
+        e.preventDefault()
+        let label = $("#ingredient_label").val();
+        let category = $("#ingredient_ingredientCategory").val();
+        $.post("",)
+    })
+})
 
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        //trigger: 'focus',
+        trigger: 'hover',
+        html: true,
+        content: function () {
+            return '<img class="img-fluid" src="'+$(this).data('img') + '" />';
+        },
+        title: 'Toolbox'
+    })
+});

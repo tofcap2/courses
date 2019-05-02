@@ -25,9 +25,9 @@
                     <a class="nav-item nav-link" href="{{ path('user_show') }}">Mon compte</a>
                     <a class="nav-item nav-link" href="{{ path('menu_index') }}">Mes menus</a>
                     <a class="nav-item nav-link" href="#">Contact</a>
-                    <div>
+                    <div class="d-flex ml-5">
                         <a class="nav-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
-                        <a class="nav-item nav-link ml-5" href="{{ path('user_show') }}">{{ app.user }}</a>
+                        <a class="nav-item nav-link ml-2 user-connect" href="{{ path('user_show') }}">{{ app.user }}</a>
                     </div>
                     {% else %}
                     <a class="nav-item nav-link" href="{{ path('app_login') }}">Se connecter</a>

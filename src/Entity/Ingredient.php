@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredient
  *
+ * @ORM\Entity(repositoryClass="App\Repository\IngredientRepository")
  * @ORM\Table(name="ingredient", indexes={@ORM\Index(name="fk_ingredient_ingredient_category1_idx", columns={"ingredient_category_id"})})
  * @ORM\Entity
  */
