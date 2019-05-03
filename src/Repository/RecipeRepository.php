@@ -4,6 +4,7 @@ namespace App\Repository;
 
 
 use App\Entity\Recipe;
+use App\Entity\RecipeSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -32,9 +33,24 @@ class RecipeRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(RecipeSearch $search): Query
     {
-        return $this->findVisibleQuery()->getQuery();
+
+        $query = $this->findVisibleQuery();
+
+        if ($search->getCategory()){
+            $query = $query
+                ->andWhere('r.category = :category')
+                ->setParameter('category', $search->getCategory());
+        }
+
+        if ($search->getRecipe()){
+            $query = $query
+                ->andWhere('r = :recipe')
+                ->setParameter('recipe', $search->getRecipe());
+        }
+
+        return $query->getQuery();
     }
 
     public function findVisibleQuery(): QueryBuilder

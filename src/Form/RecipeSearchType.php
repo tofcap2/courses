@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\RecipeSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -11,7 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeSearchType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -19,12 +17,16 @@ class RecipeSearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Categorie'
+                    'placeholder' => 'Catégorie'
                 ]
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Rechercher',
-            ])
+            ->add('recipe', null,[
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Recette'
+                ]
+             ])
         ;
     }
 
@@ -32,8 +34,8 @@ class RecipeSearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RecipeSearch::class,
-            'method'    => 'get',
-            'csrf_protection' => false,
+            'method'     => 'get',
+            'csrf_protection' => false
         ]);
     }
 
@@ -41,5 +43,4 @@ class RecipeSearchType extends AbstractType
     {
         return '';
     }
-
 }

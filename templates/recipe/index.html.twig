@@ -3,7 +3,20 @@
 {% block title %}Recipe index{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">Recettes</h1>
+    <h1 class="text-center mt-5 mb-3">Recettes</h1>
+    {{ form_start(form) }}
+    <div class="recipe-search col-md-6 offset-md-3 d-flex flex-column align-items-center p-2">
+        <div class="row mt-2">
+            {{ form_row(form.category) }}
+        </div>
+        <div class="row mt-2">
+            {{ form_row(form.recipe) }}
+        </div>
+        <div class="row mt-2">
+            <button class="btn btn-success">Rechercher</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
 
     <div class="container recipe-container">
         {% for recipe in recipes %}
@@ -13,7 +26,7 @@
         {% endfor %}
     </div>
 
-    <div class="pagination">
+    <div class="pagination offset-md-5 mt-5">
         {{ knp_pagination_render(recipes) }}
     </div>
 

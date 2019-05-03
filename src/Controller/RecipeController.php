@@ -27,17 +27,24 @@ class RecipeController extends BaseController
     /**
      * @Route("/", name="recipe_index", methods={"GET"})
      * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $recipes = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
-            $request->query->getInt('page', 1), 10);
+        $search = new RecipeSearch();
+        $form = $this->createForm(RecipeSearchType::class, $search);
+        $form->handleRequest($request);
 
+        $recipes = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 12);
+//        $toto = $request->get('category');
+//        dump($toto); die();
 
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
+            'form'    => $form->createView(),
         ]);
 
     }

@@ -7,28 +7,49 @@ namespace App\Entity;
 class RecipeSearch
 {
     /**
-     * @var
+     * @var string|null
      */
     private $category;
 
     /**
-     * @return mixed
+     * @var string|null
      */
-    public function getCategory()
+    private $recipe;
+
+    /**
+     * @return string|null
+     */
+    public function getCategory(): ?string
     {
         return $this->category;
     }
 
     /**
-     * @param mixed $category
+     * @param string|null $category
      * @return RecipeSearch
      */
-    public function setCategory($category)
+    public function setCategory(string $category): RecipeSearch
     {
         $this->category = $category;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getRecipe(): ?string
+    {
+        return $this->recipe;
+    }
 
+    /**
+     * @param string|null $recipe
+     * @return RecipeSearch
+     */
+    public function setRecipe(string $recipe): RecipeSearch
+    {
+        $this->recipe = $recipe;
+        return $this;
+    }
 
 }
