@@ -4,8 +4,6 @@
 
 {% block body %}
     <h1 class="text-center mt-5">Recettes</h1>
-    {{ form_start(form) }}
-    {{ form_end(form) }}
 
     <div class="container recipe-container">
         {% for recipe in recipes %}
@@ -13,6 +11,10 @@
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
             </div>
         {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {{ knp_pagination_render(recipes) }}
     </div>
 
     <a href="{{ path('recipe_new') }}">Create new</a>

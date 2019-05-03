@@ -5,6 +5,8 @@ namespace App\Repository;
 
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class RecipeRepository extends ServiceEntityRepository
@@ -25,6 +27,19 @@ class RecipeRepository extends ServiceEntityRepository
             ->setMaxResults($limit);
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findVisibleQuery()->getQuery();
+    }
+
+    public function findVisibleQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('r');
     }
 
 }

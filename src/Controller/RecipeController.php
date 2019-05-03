@@ -7,33 +7,37 @@ use App\Entity\Recipe;
 use App\Entity\RecipeSearch;
 use App\Form\RecipeSearchType;
 use App\Form\RecipeType;
+use App\Repository\RecipeRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @property RecipeRepository repository
  * @Route("/recipe")
  */
 class RecipeController extends BaseController
 {
+    public function __construct(RecipeRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @Route("/", name="recipe_index", methods={"GET"})
-     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Request $request): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $search =new RecipeSearch();
-        $form = $this->createForm(RecipeSearchType::class, $search);
-        $form->handleRequest($request);
+        $recipes = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1), 10);
 
-        $recipes = $this->getDoctrine()
-            ->getRepository(Recipe::class)
-            ->findAll($search);
 
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
-            'form' => $form->createView(),
         ]);
 
     }
