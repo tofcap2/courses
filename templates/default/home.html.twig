@@ -1,7 +1,3 @@
-{% extends "base.html.twig" %}
-
 {% block body %}
-
-    {{ recipe[0].title }}
-    {{ recipe[0].category.label }}
+        {{ render(controller('App\\Controller\\RecipeController::index')) }}
 {% endblock %}

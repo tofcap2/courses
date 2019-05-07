@@ -14,7 +14,6 @@ class PictureType extends AbstractType
     {
         $builder
             ->add('filenameFile', VichImageType::class)
-            ->add('alt')
         ;
     }
 

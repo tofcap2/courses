@@ -2,59 +2,63 @@
 
     <div class="d-flex flex-column-reverse">
         <div>
-            <div class="form-recipeIngredient">
-                <ul class="recipeIngredient" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
-                    {% for recipeIngredient in form.recipeIngredient %}
-                        <li>{{ recipe.recipeIngredient}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="form-steps">
-                <ul class="steps" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
-                    {% for step in form.step %}
-                        <li>{{ recipe.step}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="form-pictures">
-                <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
-                    {% for picture in form.pictures %}
-                        <li>{{ picture.filename}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
         </div>
-        <div>
-            <div class="form-title">
-                <label for="">Titre de la recette</label>
-                {{ form_widget(form.title) }}
+        <div class="d-flex justify-content-around">
+            <div class="form-rens w-50">
+                <div class="form-title d-flex flex-column mt-3 bg-white p-3 w-75">
+                    <label for="">Titre de la recette</label>
+                    {{ form_widget(form.title) }}
+                </div>
+                <div class="form-pictures mt-4">
+                    <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                        {% for picture in form.pictures %}
+                            <li>{{ picture.filename}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div class="form-category d-flex flex-column mt-3 bg-white p-3 w-50">
+                            <label for="">Catégorie</label>
+                            {{ form_widget(form.category) }}
+                        </div>
+                        <div class="form-difficulty d-flex flex-column mt-3 ml-2 bg-white p-3 w-50">
+                            <label for="">Difficulté</label>
+                            {{ form_widget(form.difficulty) }}
+                        </div>
+                    </div>
+                    <div class="form-tag d-flex flex-column mt-3 bg-white p-3 w-50">
+                        <label for="">Type d'alimentation</label>
+                        {{ form_widget(form.tag) }}
+                    </div>
+                </div>
+                <div class="form-recipeIngredient">
+                    <ul class="recipeIngredient mt-4" data-prototype="{{ form_widget(form.recipeIngredient.vars.prototype)|e('html_attr') }}">
+                        {% for recipeIngredient in form.recipeIngredient %}
+                            <li>{{ recipe.recipeIngredient}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="form-steps">
+                    <ul class="steps mt-4" data-prototype="{{ form_widget(form.step.vars.prototype)|e('html_attr') }}">
+                        {% for step in form.step %}
+                            <li>{{ recipe.step}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="form-time d-flex mt-3 mb-3 text-center">
-                <div class="form-preparation mr-4">
+            <div class="form-time d-flex flex-column">
+                <div class="form-preparation mt-3 bg-white p-3">
                     <label for="">Temps de préparation</label>
                     {{ form_widget(form.preparationTime) }}
                 </div>
-                <div class="form-cooking">
+                <div class="form-cooking mt-3 bg-white p-3">
                     <label for="">Temps de cuisson</label>
                     {{ form_widget(form.cookingTime) }}
                 </div>
-            </div>
-            <div class="d-flex text-center">
-                <div class="form-category mr-4">
-                    <label for="">Catégorie</label>
-                    {{ form_widget(form.category) }}
-                </div>
-                <div class="form-difficulty mr-4">
-                    <label for="">Difficulté</label>
-                    {{ form_widget(form.difficulty) }}
-                </div>
-                <div class="form-servings">
+                <div class="form-servings d-flex flex-column mt-3 bg-white p-3">
                     <label for="">Nombre de personnes</label>
                     {{ form_widget(form.servings) }}
-                </div>
-                <div class="form-tag">
-                    <label for="">Type d'alimentation</label>
-                    {{ form_widget(form.tag) }}
                 </div>
             </div>
             <div class="form-none d-none">
@@ -64,7 +68,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <button class="btn btn-success text-center offset-md-6">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

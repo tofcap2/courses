@@ -63,7 +63,7 @@ function addStepsForm($collectionStepHolder, $newStepLinkLi) {
     $newStepLinkLi.before($newFormLi);
 
     // Also add a remove button
-    $newFormLi.append('<button type="button" class="remove_step btn btn-danger">Retirer l\'étape</button>')
+    $newFormLi.append('<button type="button" class="remove_step btn btn-danger">Retirer</button>')
     $newStepLinkLi.before($newFormLi);
 
     $('.remove_step').click(function (e) {
@@ -112,7 +112,7 @@ function addIngredientsForm($collectionIngredientHolder, $newIngredientLinkLi) {
     $newIngredientLinkLi.before($newFormLi);
 
     // Also add a remove button
-    $newFormLi.append('<button type="button" class="remove_ingredient btn btn-danger">Retirer l\'ingrédient</button>')
+    $newFormLi.append('<button type="button" class="remove_ingredient btn btn-danger">Retirer</button>')
     $newIngredientLinkLi.before($newFormLi);
 
     $('.remove_ingredient').click(function (e) {
@@ -160,7 +160,7 @@ function addPicturesForm($collectionHolder, $newPictureLinkLi) {
     let $newFormLi = $('<li class="picture"></li>').append(newForm);
     $newPictureLinkLi.before($newFormLi);
     // Also add a remove button
-    $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer la photo</button>')
+    $newFormLi.append('<button type="button" class="remove_picture btn btn-danger">Retirer</button>')
     $newPictureLinkLi.before($newFormLi);
 
     $('.remove_picture').click(function (e) {

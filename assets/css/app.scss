@@ -10,6 +10,7 @@
 @import "styles/new_recipe";
 @import "styles/user";
 @import "styles/menu";
+@import "styles/footer";
 
 
 * {
@@ -30,4 +31,9 @@ ul{
 
 h1{
     font-family: Pacifico, sans-serif;
+}
+
+.container-fluid{
+    padding: 0;
+    margin: 0;
 }

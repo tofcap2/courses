@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="text-center mt-5 mb-3">Recettes</h1>
     {{ form_start(form) }}
-    <div class="recipe-search col-md-6 offset-md-3 d-flex flex-column align-items-center p-2">
+    <div class="recipe-search col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
         <div class="row mt-2">
             {{ form_row(form.category) }}
         </div>
@@ -18,7 +18,7 @@
     </div>
     {{ form_end(form) }}
 
-    <div class="container recipe-container">
+    <div class="container recipe-container mt-3">
         {% for recipe in recipes %}
             <div class="col-xs-4 col-sm-8 col-md-4 card-recipe flex-wrap">
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
@@ -30,5 +30,4 @@
         {{ knp_pagination_render(recipes) }}
     </div>
 
-    <a href="{{ path('recipe_new') }}">Create new</a>
 {% endblock %}

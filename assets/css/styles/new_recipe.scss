@@ -1,5 +1,10 @@
 /*===============NEW RECIPE================*/
 
+.recipe-new{
+  background-color: #F2F2F2;
+  border-radius: 20px;
+}
+
 #recipe{
   display: flex;
   flex-wrap: wrap;
@@ -9,17 +14,27 @@
   display: flex;
 }
 
+.form-time div{
+  border-radius: 20px;
+}
+
+.form-rens div{
+  border-radius: 20px;
+}
+
 .ingredient{
   display: flex;
   margin: 5px;
-  align-items: center;
+  align-items: flex-end;
 
   button{
     height: 70%;
+
   }
 
   >div:first-of-type{
     display: flex;
+    align-items: flex-end;
 
     >div{
       margin: 10px;
@@ -29,7 +44,7 @@
       }
 
       >button{
-        background-color: white;
+        background-color: #F2F2F2;
         border: none;
         font-size: 1.5em;
       }
@@ -54,6 +69,7 @@
 
       >label{
         margin-right: 10px;
+        width: 50%;
       }
     }
   }

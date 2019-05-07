@@ -125,5 +125,4 @@ class RecipeController extends BaseController
     }
 
 
-
 }

@@ -4,8 +4,8 @@
 
 {% block body %}
     <h1 class="text-center mt-3 mb-5">Création d'une recette</h1>
-
-    {{ include('recipe/_form.html.twig') }}
-
+    <div class="recipe-new col-md-10 offset-md-1 p-4">
+        {{ include('recipe/_form.html.twig') }}
+    </div>
     <a href="{{ path('recipe_index') }}">back to list</a>
 {% endblock %}
