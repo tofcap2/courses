@@ -8,15 +8,6 @@ use Twig\Environment;
 
 class DefaultController extends BaseController
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
-
-    public function __construct(Environment $twig)
-    {
-        $this->twig = $twig;
-    }
 
     /**
      * @Route("/", name="homepage")

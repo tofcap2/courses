@@ -13,12 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Category
 {
 
-    const CATEGORY = [
-        'Entrée',
-        'Plat principal',
-        'Dessert',
-        'Boisson',
-    ];
+    const ENTREE = "Entrée";
+    const PLAT = "Plat principal";
+    const DESSERT = "Dessert";
+
     /**
      * @var int
      *
