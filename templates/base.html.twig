@@ -17,19 +17,17 @@
             <img class="img-header" src="{{ asset('images/logo.png') }}" alt="">
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav header-menu d-flex align-items-center h5">
-                    <div class="d-flex justify-content-center">
-                        <a class="nav-item nav-link mr-5" href="{{ path('recipe_index') }}">Recettes</a>
-                        {% if app.user %}
-                            <a class="nav-item nav-link mr-5" href="{{ path('user_show') }}">Mon compte</a>
-                            <a class="nav-item nav-link mr-5" href="{{ path('menu_index') }}">Mes menus</a>
-                            <a class="nav-item nav-link mr-5" href="#">Contact</a>
-                            <a class="nav-item nav-link mr-5" href="{{ path('app_logout') }}">Se déconnecter</a>
-                            <a class="nav-item nav-link ml-2 user-connect" href="{{ path('user_show') }}">{{ app.user }}</a>
-                        {% else %}
-                            <a class="nav-item nav-link mr-5" href="{{ path('app_login') }}">Se connecter</a>
-                            <a class="nav-item nav-link mr-5" href="#">Contact</a>
-                        {% endif %}
-                    </div>
+                    <a class="nav-item nav-link mr-5" href="{{ path('recipe_index') }}">Recettes</a>
+                    {% if app.user %}
+                        <a class="nav-item nav-link mr-5" href="{{ path('user_show') }}">Mon compte</a>
+                        <a class="nav-item nav-link mr-5" href="{{ path('menu_index') }}">Mes menus</a>
+                        <a class="nav-item nav-link mr-5" href="{{ path('contact') }}">Contact</a>
+                        <a class="nav-item nav-link mr-5" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        <a class="nav-item nav-link ml-2 user-connect" href="{{ path('user_show') }}">{{ app.user }}</a>
+                    {% else %}
+                        <a class="nav-item nav-link mr-5" href="{{ path('app_login') }}">Se connecter</a>
+                        <a class="nav-item nav-link mr-5" href="#">Contact</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

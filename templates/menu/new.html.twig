@@ -4,8 +4,8 @@
 
 {% block body %}
     <h1 class="text-center mt-3 mb-5">Nouveau menu</h1>
-
-    {{ include('menu/_form.html.twig') }}
-
+    <div class="menu-new card col-md-4 offset-md-4">
+        {{ include('menu/_form.html.twig') }}
+    </div>
     <a href="{{ path('menu_index') }}">back to list</a>
 {% endblock %}

@@ -22,44 +22,47 @@
             <input type="checkbox" aria-label="Checkbox for following text input"></label>
         </div>
     </div>
-    <h2 class="menu-title text-center mt-5">Déjeuner</h2>
-    <div class="d-flex mb-2 mt-5 col-md-10 offset-md-1 text-center">
-        <div class="d-flex card mr-1 w-75">Lundi</div>
-        <div class="d-flex card mr-1 w-75">Mardi</div>
-        <div class="d-flex card mr-1 w-75">Mercredi</div>
-        <div class="d-flex card mr-1 w-75">Jeudi</div>
-        <div class="d-flex card mr-1 w-75">Vendredi</div>
-        <div class="d-flex card mr-1 w-75">Samedi</div>
-        <div class="d-flex card mr-1 w-75">Dimanche</div>
+    <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
+        <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Déjeuner</h2>
+        <div class="d-flex mb-2 mt-5 text-center">
+            <div class="d-flex card mr-1 w-75">Lundi</div>
+            <div class="d-flex card mr-1 w-75">Mardi</div>
+            <div class="d-flex card mr-1 w-75">Mercredi</div>
+            <div class="d-flex card mr-1 w-75">Jeudi</div>
+            <div class="d-flex card mr-1 w-75">Vendredi</div>
+            <div class="d-flex card mr-1 w-75">Samedi</div>
+            <div class="d-flex card mr-1 w-75">Dimanche</div>
+        </div>
+        <div class="menu d-flex text-center">
+            {% for menu in menus %}
+                <div class="card-menu d-flex card mr-1 w-75">
+                    <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
+                    <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
+                    <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="menu d-flex col-md-10 offset-md-1 text-center">
-        {% for menu in menus %}
-            <div class="card-menu d-flex card mr-1 w-75">
-                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
-                <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
-                <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
-            </div>
-        {% endfor %}
-    </div>
-
-    <h2 class="menu-title text-center mt-5">Diner</h2>
-    <div class="d-flex mb-2 mt-5 col-md-10 offset-md-1 text-center">
-        <div class="d-flex card mr-1 w-75">Lundi</div>
-        <div class="d-flex card mr-1 w-75">Mardi</div>
-        <div class="d-flex card mr-1 w-75">Mercredi</div>
-        <div class="d-flex card mr-1 w-75">Jeudi</div>
-        <div class="d-flex card mr-1 w-75">Vendredi</div>
-        <div class="d-flex card mr-1 w-75">Samedi</div>
-        <div class="d-flex card mr-1 w-75">Dimanche</div>
-    </div>
-    <div class="menu d-flex col-md-10 offset-md-1 text-center">
-        {% for menu in menus %}
-            <div class="card-menu d-flex card mr-1 w-75">
-                <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
-                <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
-                <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
-            </div>
-        {% endfor %}
+    <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
+        <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Diner</h2>
+        <div class="d-flex mb-2 mt-5 text-center">
+            <div class="d-flex card mr-1 w-75">Lundi</div>
+            <div class="d-flex card mr-1 w-75">Mardi</div>
+            <div class="d-flex card mr-1 w-75">Mercredi</div>
+            <div class="d-flex card mr-1 w-75">Jeudi</div>
+            <div class="d-flex card mr-1 w-75">Vendredi</div>
+            <div class="d-flex card mr-1 w-75">Samedi</div>
+            <div class="d-flex card mr-1 w-75">Dimanche</div>
+        </div>
+        <div class="menu d-flex text-center">
+            {% for menu in menus %}
+                <div class="card-menu d-flex card mr-1 w-75">
+                    <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
+                    <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
+                    <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
         <div class="d-flex flex-column">
             <table>

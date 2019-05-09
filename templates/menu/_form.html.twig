@@ -1,5 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="menu-form text-center">
+    <div class="starter mt-3">
+        <h4>Entrée</h4>
+        {{ form_widget(form.starter) }}
+    </div>
+    <div class="maincourse mt-3">
+        <h4>Plat principal</h4>
+        {{ form_widget(form.mainCourse) }}
+    </div>
+    <div class="dessert mt-3">
+        <h4>Dessert</h4>
+        {{ form_widget(form.dessert) }}
+    </div>
+    <div class="user mt-3">
+        <h4>Utilisateur</h4>
+        {{ form_widget(form.user) }}
+    </div>
+    <button class="btn btn-success mt-3 mb-3">{{ button_label|default('Enregistrer') }}</button>
+</div>
 
 {{ form_end(form) }}

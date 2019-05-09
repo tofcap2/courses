@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="text-center mt-5 mb-3">Recettes</h1>
     {{ form_start(form) }}
-    <div class="recipe-search col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
+    <div class="recipe-search col-xs-8 offset-sm-2 col-sm-6 offset-sm-3 col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
         <div class="row mt-2">
             {{ form_row(form.category) }}
         </div>
@@ -20,7 +20,7 @@
 
     <div class="container recipe-container mt-3">
         {% for recipe in recipes %}
-            <div class="col-xs-4 col-sm-8 col-md-4 card-recipe flex-wrap">
+            <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">
                 {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
             </div>
         {% endfor %}

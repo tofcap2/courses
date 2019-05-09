@@ -16,8 +16,8 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
             ->add('starter', EntityType::class, [
+                'label' => 'Entrée',
                 'class' => Recipe::class,
                 'query_builder' => function (EntityRepository $er) {
                     $qb = $er->createQueryBuilder('r');
@@ -28,6 +28,7 @@ class MenuType extends AbstractType
                 },
             ])
             ->add('mainCourse', EntityType::class,[
+                'label' => 'Plat principal',
                 'class' => Recipe::class,
                 'query_builder' => function (EntityRepository $er) {
                     $qb = $er->createQueryBuilder('r');
@@ -38,6 +39,7 @@ class MenuType extends AbstractType
                 },
             ])
             ->add('dessert', EntityType::class,[
+                'label' => 'Dessert',
                 'class' => Recipe::class,
                 'query_builder' => function (EntityRepository $er) {
                     $qb = $er->createQueryBuilder('r');
@@ -47,7 +49,9 @@ class MenuType extends AbstractType
                         ->setParameter('label', Category::DESSERT);
                 },
             ])
-            ->add('user')
+            ->add('user', null, [
+                'label' => 'Utilisateur']
+            )
         ;
     }
 

@@ -1,6 +1,6 @@
 <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
     {% for picture in recipe.pictures %}
-        <div class="card m-3" style="width: 18rem;">
+        <div class="card m-3">
             <div class="card-img">
                 <img src="{{ asset('uploads/' ~ picture.filename) }}" class="card-img-top" alt="{{ recipe.title }}">
             </div>

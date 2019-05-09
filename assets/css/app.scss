@@ -11,6 +11,7 @@
 @import "styles/user";
 @import "styles/menu";
 @import "styles/footer";
+@import "styles/menu-new";
 
 
 * {
@@ -35,6 +36,10 @@ h1{
 }
 
 h2{
+    font-family: Pacifico, sans-serif;
+}
+
+h4{
     font-family: Pacifico, sans-serif;
 }
 

@@ -85,19 +85,6 @@
     </div>
 </div>
 
-{% block javascripts %}
-    <script>
-        $(function () {
-            $("#newIngredient").submit(function (e) {
-                e.preventDefault()
-                label = $("#ingredient_label").val();
-                // category = $(this).find("select[name='ingredient[ingredientCategory]']").val();
-                alert(label);
-            })
-        })
-
-
-    </script>
 
 {% endblock %}
 
