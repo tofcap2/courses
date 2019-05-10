@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 
+use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Entity\RecipeSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -31,11 +32,11 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param RecipeSearch $search
      * @return Query
      */
     public function findAllVisibleQuery(RecipeSearch $search): Query
     {
-
         $query = $this->findVisibleQuery();
 
         if ($search->getCategory()){
@@ -56,6 +57,28 @@ class RecipeRepository extends ServiceEntityRepository
     public function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('r');
+    }
+
+    public function searchBy(string $sq)
+    {
+        $sq = "%$sq%";
+
+        $qb = $this->createQueryBuilder('r');
+        $qb = $qb
+            ->where($qb->expr()->orX(
+                $qb->expr()->like('r.title', ':sq')
+            ));
+        return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
+    }
+
+    public function findByCategory(Category $category): array
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb->where($qb->expr()->eq('r.category', ':category'));
+        $qb->setParameter(':category', $category);
+
+        return $qb->getQuery()->getResult();
     }
 
 }

@@ -18,6 +18,14 @@
     </div>
     {{ form_end(form) }}
 
+    <form action="{{ path('search') }}" method="get" class="d-flex col-md-6 offset-md-3">
+        <label for="search-query"></label>
+        <input type="text" name="search-query" class="form-control">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <a href="{{ path('recipe_starter') }}">Entrée</a>
+
     <div class="container recipe-container mt-3">
         {% for recipe in recipes %}
             <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">

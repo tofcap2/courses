@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Picture;
 use App\Entity\Recipe;
 use App\Entity\RecipeSearch;
@@ -15,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @property RecipeRepository repository
- * @Route("/recipe")
  */
 class RecipeController extends BaseController
 {
@@ -25,7 +25,7 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/", name="recipe_index", methods={"GET"})
+     * @Route("/recipe", name="recipe_index", methods={"GET"})
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
@@ -50,7 +50,7 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/new", name="recipe_new", methods={"GET","POST"})
+     * @Route("/recipe/new", name="recipe_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -74,7 +74,7 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="recipe_show", methods={"GET"})
+     * @Route("/recipe/{id}", name="recipe_show", methods={"GET"})
      * @param Recipe $recipe
      * @return Response
      */
@@ -86,7 +86,7 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/{id}/edit", name="recipe_edit", methods={"GET","POST"})
+     * @Route("/recipe/{id}/edit", name="recipe_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Recipe $recipe
      * @return Response
@@ -111,7 +111,7 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="recipe_delete", methods={"DELETE"})
+     * @Route("/recipe/{id}", name="recipe_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Recipe $recipe): Response
     {
@@ -120,8 +120,36 @@ class RecipeController extends BaseController
             $entityManager->remove($recipe);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('recipe_index');
+    }
+
+    /**
+     * @Route("/starter", name="recipe_starter")
+     */
+    public function starter()
+    {
+        $foundstarter = $this->getDoctrine()->getRepository(Category::class)->findBy(["label" => Category::ENTREE]);
+        $starter = $this->getDoctrine()->getRepository(Recipe::class)->findBy(["category" => $foundstarter]);
+
+        return $this->render("recipe/starter.html.twig", ['starter' => $starter]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route("/search-results", name="search", methods="GET")
+     */
+    public function searchQuery(Request $request)
+    {
+        $uq = $request->get('search-query');
+
+        if($uq === ""){
+            $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findAll();
+            return $this->render('search/index.html.twig', ['recipes' => $recipe]);
+        }else{
+            $recipe = $this->getDoctrine()->getRepository(Recipe::class)->searchBy($uq);
+            return $this->render('search/index.html.twig', ['recipes' => $recipe]);
+        }
     }
 
 

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body  %}
+
+    <div class="container recipe-container mt-3">
+        {% for recipe in recipes %}
+            <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">
+                {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
