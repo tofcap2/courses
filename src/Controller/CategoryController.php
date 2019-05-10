@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Recipe;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,13 +53,18 @@ class CategoryController extends BaseController
 
     /**
      * @Route("/{id}", name="category_show", methods={"GET"})
+     * @param Category $category
+     * @return Response
      */
     public function show(Category $category): Response
     {
+        $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(["category" => $category]);
         return $this->render('category/show.html.twig', [
             'category' => $category,
+            'recipes' => $recipes
         ]);
     }
+
 
     /**
      * @Route("/{id}/edit", name="category_edit", methods={"GET","POST"})

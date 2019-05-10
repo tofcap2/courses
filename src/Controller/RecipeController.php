@@ -36,6 +36,8 @@ class RecipeController extends BaseController
         $form = $this->createForm(RecipeSearchType::class, $search);
         $form->handleRequest($request);
 
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
         $recipes = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 12);
@@ -44,9 +46,24 @@ class RecipeController extends BaseController
 
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
+            'categories' => $categories,
             'form'    => $form->createView(),
         ]);
 
+    }
+
+    /**
+     * @Route("/recipe/starter", name="recipe_starter")
+     */
+    public function starter()
+    {
+        $foundstarter = $this->getDoctrine()->getRepository(Category::class)->findBy(["label" => Category::ENTREE]);
+        $starter = $this->getDoctrine()->getRepository(Recipe::class)->findBy(["category" => $foundstarter]);
+
+        return $this->render("recipe/starter.html.twig", [
+            'starter' => $starter,
+
+        ]);
     }
 
     /**
@@ -121,17 +138,6 @@ class RecipeController extends BaseController
             $entityManager->flush();
         }
         return $this->redirectToRoute('recipe_index');
-    }
-
-    /**
-     * @Route("/starter", name="recipe_starter")
-     */
-    public function starter()
-    {
-        $foundstarter = $this->getDoctrine()->getRepository(Category::class)->findBy(["label" => Category::ENTREE]);
-        $starter = $this->getDoctrine()->getRepository(Recipe::class)->findBy(["category" => $foundstarter]);
-
-        return $this->render("recipe/starter.html.twig", ['starter' => $starter]);
     }
 
     /**

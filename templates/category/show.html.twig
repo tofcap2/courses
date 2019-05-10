@@ -3,19 +3,13 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
-                <td>{{ category.label }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="container recipe-container mt-3">
+        {% for recipe in recipes %}
+            <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">
+                {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
+            </div>
+        {% endfor %}
+    </div>
     <a href="{{ path('category_index') }}">back to list</a>
 
     <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>

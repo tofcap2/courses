@@ -4,27 +4,19 @@
 
 {% block body %}
     <h1 class="text-center mt-5 mb-3">Recettes</h1>
-    {{ form_start(form) }}
     <div class="recipe-search col-xs-8 offset-sm-2 col-sm-6 offset-sm-3 col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
-        <div class="row mt-2">
-            {{ form_row(form.category) }}
-        </div>
-        <div class="row mt-2">
-            {{ form_row(form.recipe) }}
-        </div>
-        <div class="row mt-2">
-            <button class="btn btn-success">Rechercher</button>
-        </div>
+
+        <form action="{{ path('search') }}" method="get" class="d-flex flex-column">
+            <label for="search-query"></label>
+            <input type="text" name="search-query" class="form-control" placeholder="Recette">
+            <button class="btn btn-dark mt-3" type="submit">Rechercher</button>
+        </form>
     </div>
-    {{ form_end(form) }}
 
-    <form action="{{ path('search') }}" method="get" class="d-flex col-md-6 offset-md-3">
-        <label for="search-query"></label>
-        <input type="text" name="search-query" class="form-control">
-        <button type="submit">Rechercher</button>
-    </form>
+    {% for category in categories %}
+        <a href="{{ path('category_show', {'id': category.id }) }}">{{ category.label }}</a>
+    {% endfor %}
 
-    <a href="{{ path('recipe_starter') }}">Entrée</a>
 
     <div class="container recipe-container mt-3">
         {% for recipe in recipes %}
