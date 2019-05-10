@@ -12,10 +12,11 @@
             <button class="btn btn-dark mt-3" type="submit">Rechercher</button>
         </form>
     </div>
-
-    {% for category in categories %}
-        <a href="{{ path('category_show', {'id': category.id }) }}">{{ category.label }}</a>
-    {% endfor %}
+    <div class="category-filter justify-content-center mt-3 d-flex">
+        {% for category in categories %}
+            <h5><a class="mr-4" href="{{ path('category_show', {'id': category.id }) }}">{{ category.label }}</a></h5>
+        {% endfor %}
+    </div>
 
 
     <div class="container recipe-container mt-3">

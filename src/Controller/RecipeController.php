@@ -53,20 +53,6 @@ class RecipeController extends BaseController
     }
 
     /**
-     * @Route("/recipe/starter", name="recipe_starter")
-     */
-    public function starter()
-    {
-        $foundstarter = $this->getDoctrine()->getRepository(Category::class)->findBy(["label" => Category::ENTREE]);
-        $starter = $this->getDoctrine()->getRepository(Recipe::class)->findBy(["category" => $foundstarter]);
-
-        return $this->render("recipe/starter.html.twig", [
-            'starter' => $starter,
-
-        ]);
-    }
-
-    /**
      * @Route("/recipe/new", name="recipe_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

@@ -24,12 +24,11 @@ class MenuController extends BaseController
             ->getRepository(Menu::class)
             ->findBy([ 'user' => $this->getUser() ]);
 
-        //$recipe = $this->getDoctrine()->getRepository(Menu::class)->findByIngredient();
-
+        $recipe = $this->getDoctrine()->getRepository(Menu::class)->findByIngredient();
 
         return $this->render('menu/index.html.twig', [
             'menus' => $menus,
-            //'recipe' => $recipe,
+            'recipe' => $recipe,
         ]);
     }
 
