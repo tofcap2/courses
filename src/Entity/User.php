@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private $recipes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="user", cascade={"persist"})
+     */
+    private $menus;
+
     public function __toString()
     {
         return $this->getUsername();
@@ -247,6 +252,26 @@ class User implements UserInterface
     {
         $this->roles = $roles;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMenus()
+    {
+        return $this->menus;
+    }
+
+    /**
+     * @param mixed $menus
+     * @return User
+     */
+    public function setMenus($menus)
+    {
+        $this->menus = $menus;
+        return $this;
+    }
+
+
 
 
     /**

@@ -5,15 +5,10 @@ namespace App\Repository;
 use App\Entity\Menu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
-/**
- * Class MenuRepository
- * @package App\Repository
- * @method Menu
- * @method getDoctrine()
- */
+
 class MenuRepository extends ServiceEntityRepository
 
 {
@@ -22,43 +17,23 @@ class MenuRepository extends ServiceEntityRepository
         parent::__construct($registry, Menu::class);
     }
 
-
-    public function searchBy(string $sq)
-    {
-        $qb = $this->createQueryBuilder('u');
-        $qb = $qb
-            ->innerJoin('u.genre', 'g')
-            ->innerJoin('u.type', 't')
-            ->where($qb->expr()->orX(
-                $qb->expr()->eq('g.libelle', ':sq'),
-                $qb->expr()->eq('u.artistId', ':sq'),
-                $qb->expr()->eq('t.libelle', ':sq'),
-                $qb->expr()->eq('u.localisation', ':sq'))
-            );
-
-        return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
-    }
-
     /**
+     * @param $menuid
      * @return mixed
      */
-    public function findByIngredient() : array
+    public function findAllIngredients($menuid) : array
     {
-        $qb = $this->createQueryBuilder('menu');
+        $qb = $this->createQueryBuilder('m');
 
-        $qb = $qb->select('menu', 'recipe', 'recipe_ingredient', 'ingredient', 'unit')
+        $qb = $qb->select('ingredient.label', 'unit.label')
             ->addSelect('SUM(recipe_ingredient.qte) as iqte')
-            ->leftJoin('m.recipe', 'r')
+            ->leftJoin('m.starter', 'r')
             ->leftJoin('r.recipe_ingredient', 'ri')
             ->leftJoin('ri.unit', 'u')
             ->leftJoin('ri.ingredient', 'i')
-            ->where($qb->expr()->eq('m.recipe', ':r'))
-            ->andwhere($qb->expr()->eq('r.recipe_ingredient', ':ri'))
-            ->andwhere($qb->expr()->eq('ri.unit', ':u'))
-            ->andwhere($qb->expr()->eq('ri.ingredient', ':i'))
+            ->where($qb->expr()->eq('m.id', ':r'))
+            ->groupBy('ingredient.label', 'unit.label');
 
-            ->groupBy('ingredient.label');
-
-        return $qb->setParameters([':r' => 'recipe', ':ri' => 'recipe_ingredient', ':u' => 'unit', ':i' => 'ingredient'])->getQuery()->getResult();
+        return $qb->setParameter(':r', $menuid)->getQuery()->getResult();
     }
 }

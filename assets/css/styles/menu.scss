@@ -5,8 +5,13 @@
   border-radius: 20px;
 }
 
-.card-menu p a{
-  color: #000;
+.card-menu{
+  border: 2px solid #FFFF44;
+  p{
+    a{
+      color: #000;
+    }
+  }
 }
 
 .menu-title{
@@ -17,4 +22,8 @@
 .menu-dejeuner{
   background-color: #bbbbbb;
   border-radius: 20px;
+
+  div div{
+    border: 2px solid #FFFF44;
+  }
 }

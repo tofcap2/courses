@@ -61,7 +61,7 @@ class Menu
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="menus")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -174,6 +174,14 @@ class Menu
     {
         $this->user = $user;
         return $this;
+    }
+
+    /**
+     * @return Recipe
+     */
+    public function __toString(): string
+    {
+        return $this->getMainCourse();
     }
 
 

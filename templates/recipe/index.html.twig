@@ -3,32 +3,31 @@
 {% block title %}Recipe index{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5 mb-3">Recettes</h1>
-    <div class="recipe-search col-xs-8 offset-sm-2 col-sm-6 offset-sm-3 col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
-
-        <form action="{{ path('search') }}" method="get" class="d-flex flex-column">
-            <label for="search-query"></label>
-            <input type="text" name="search-query" class="form-control" placeholder="Recette">
-            <button class="btn btn-dark mt-3" type="submit">Rechercher</button>
-        </form>
-    </div>
-    <div class="category-filter justify-content-center mt-3 d-flex">
-        {% for category in categories %}
-            <h5><a class="mr-4" href="{{ path('category_show', {'id': category.id }) }}">{{ category.label }}</a></h5>
-        {% endfor %}
-    </div>
-
-
-    <div class="container recipe-container mt-3">
-        {% for recipe in recipes %}
-            <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">
-                {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
+    <div class="recipe-index pt-3 pb-3">
+        <div class="container mt-5 pt-2 recipe-page">
+            <h1 class="text-center mb-3">Recettes</h1>
+            <div class="recipe-search col-xs-8 offset-sm-2 col-sm-6 offset-sm-3 col-md-4 offset-md-4 d-flex flex-column align-items-center p-3">
+                <form action="{{ path('search') }}" method="get" class="d-flex flex-column">
+                    <label for="search-query"></label>
+                    <input type="text" name="search-query" class="form-control" placeholder="Recette">
+                    <button class="btn btn-dark mt-3" type="submit">Rechercher</button>
+                </form>
             </div>
-        {% endfor %}
+            <div class="category-filter justify-content-center mt-3 d-flex">
+                {% for category in categories %}
+                    <h5><a class="mr-4" href="{{ path('category_show', {'id': category.id }) }}">{{ category.label }}</a></h5>
+                {% endfor %}
+            </div>
+            <div class="container recipe-container mt-3">
+                {% for recipe in recipes %}
+                    <div class="col-xs-4 col-sm-6 col-md-4 card-recipe flex-wrap">
+                        {% include 'recipe/card.html.twig' with {'recipe' : recipe} only %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pagination offset-md-5 mt-5">
+                {{ knp_pagination_render(recipes) }}
+            </div>
+        </div>
     </div>
-
-    <div class="pagination offset-md-5 mt-5">
-        {{ knp_pagination_render(recipes) }}
-    </div>
-
 {% endblock %}

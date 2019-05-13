@@ -5,18 +5,20 @@ namespace App\Controller;
 use App\Entity\Menu;
 use App\Entity\RecipeIngredient;
 use App\Form\MenuType;
+use App\Repository\MenuRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/menu")
+ * @Route("/")
+ * @property MenuRepository repository
  */
 class MenuController extends BaseController
 {
     /**
-     * @Route("/", name="menu_index", methods={"GET"})
+     * @Route("/menu/", name="menu_index", methods={"GET"})
      */
     public function index(): Response
     {
@@ -24,16 +26,16 @@ class MenuController extends BaseController
             ->getRepository(Menu::class)
             ->findBy([ 'user' => $this->getUser() ]);
 
-        $recipe = $this->getDoctrine()->getRepository(Menu::class)->findByIngredient();
+        //$recipe = $this->getDoctrine()->getRepository(Menu::class)->findAllIngredients($menus[0]->getId());
 
         return $this->render('menu/index.html.twig', [
             'menus' => $menus,
-            'recipe' => $recipe,
+            //'recipe' => $recipe,
         ]);
     }
 
     /**
-     * @Route("/new", name="menu_new", methods={"GET","POST"})
+     * @Route("/menu/new", name="menu_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -56,7 +58,7 @@ class MenuController extends BaseController
     }
 
     /**
-     * @Route("/show", name="menu_show", methods={"GET"})
+     * @Route("/menu/show", name="menu_show", methods={"GET"})
      * @param Menu $menu
      * @return Response
      */
@@ -68,7 +70,7 @@ class MenuController extends BaseController
     }
 
     /**
-     * @Route("/{id}/edit", name="menu_edit", methods={"GET","POST"})
+     * @Route("/menu/{id}/edit", name="menu_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Menu $menu): Response
     {
@@ -90,7 +92,7 @@ class MenuController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="menu_delete", methods={"DELETE"})
+     * @Route("/menu/{id}", name="menu_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Menu $menu): Response
     {
@@ -103,18 +105,5 @@ class MenuController extends BaseController
         return $this->redirectToRoute('menu_index');
     }
 
-
-    /**
-     * @Route("/", name="vuecourse", methods="GET")
-     * @param Menu $menu
-     * @return Response
-     */
-    public function vuecourse(Menu $menu)
-    {
-        //$ingredient = $this->getDoctrine()->getRepository(Menu::class)->editcourse(['menu' => $menu]);
-
-
-        return $this->render('vuecourse.html.twig', ['recipeIngredients' => $recipeIngredients, 'menu' => $menu]);
-    }
 
 }

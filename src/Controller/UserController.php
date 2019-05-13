@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Menu;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,8 +23,11 @@ class UserController extends BaseController
             ->getRepository(User::class)
             ->findAll();
 
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findAll();
+
         return $this->render('user/index.html.twig', [
             'users' => $users,
+            'menus' => $menus
         ]);
     }
 

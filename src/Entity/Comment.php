@@ -45,7 +45,7 @@ class Comment
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="comments")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
      * })
@@ -168,6 +168,11 @@ class Comment
     {
         $this->user = $user;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getContent();
     }
 
 

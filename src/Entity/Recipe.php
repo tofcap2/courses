@@ -110,6 +110,11 @@ class Recipe
     private $pictures;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="recipe", cascade={"persist"})
+     */
+    private $comments;
+
+    /**
      * @var int
      *
      * @ORM\OneToMany(targetEntity="Step", mappedBy="recipe", cascade={"persist"})
@@ -426,5 +431,25 @@ class Recipe
     {
         $this->recipeIngredient->removeElement($recipeIngredient);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param mixed $comments
+     * @return Recipe
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+        return $this;
+    }
+
+
 
 }

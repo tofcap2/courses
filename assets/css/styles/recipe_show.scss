@@ -1,7 +1,14 @@
 /*===============RECIPE SHOW================*/
 
-.recipe-show{
+.recipe-show-body{
   background-color: #F2F2F2;
+  margin-top: -20px;
+  margin-bottom: -35px;
+}
+
+.recipe-show{
+  background-color: #FFF;
+  border-radius: 20px;
 
   h1{
     font-size: 2em;
