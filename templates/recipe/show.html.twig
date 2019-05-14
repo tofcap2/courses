@@ -56,5 +56,33 @@
             </div>
         </div>
     </div>
+    <div class="recipe-show container pt-2 mt-5 col-md-10 offset-md-1">
+        {% if app.user %}
+            <h4 class="text-center mb-3">Laissez un commentaire</h4>
+            {{  render(controller('App\\Controller\\CommentController:new', {'id' : recipe.id }))}}
+        {% else %}
+            <div class="alert alert-secondary" role="alert">
+                <p>Veuillez vous connecter afin de pouvoir laisser un commentaire</p>
+                <a href="{{ path('app_login') }}" class="btn btn-warning">
+                    <i class="fa fa-sign-in"></i>
+                    Me connecter
+                </a>
+                <a class="btn btn-warning ml-3" href="{{ path('user_registration') }}">
+                    <i class="fa fa-user-plus"></i>
+                    Créer un compte
+                </a>
+            </div>
+        {% endif %}
+        {% for comment in recipe.comments  %}
+            <ul class="list-unstyled">
+                <li class="media mb-1">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ comment.user }}</h5>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

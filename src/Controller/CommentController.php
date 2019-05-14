@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Recipe;
 use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,12 +29,17 @@ class CommentController extends BaseController
     }
 
     /**
-     * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Recipe $recipe, Request $request): Response
     {
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
+        $comment->setUser($this->getUser());
+        $comment->setRecipe($recipe);
+
+        $form = $this->createForm(CommentType::class, $comment, [
+            'action' => $this->generateUrl('comment_new', ['id' => $recipe->getId()])
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,7 +47,7 @@ class CommentController extends BaseController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('recipe_show', ['id' => $recipe->getId()]);
         }
 
         return $this->render('comment/new.html.twig', [

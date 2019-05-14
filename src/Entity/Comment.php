@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Self_;
 
 /**
  * Comment
@@ -38,7 +40,7 @@ class Comment
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
 
@@ -83,7 +85,7 @@ class Comment
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -101,7 +103,7 @@ class Comment
     /**
      * @return bool
      */
-    public function isGrade(): bool
+    public function isGrade(): ?bool
     {
         return $this->grade;
     }
@@ -119,16 +121,16 @@ class Comment
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param \DateTime|null $createdAt
      * @return Comment
      */
-    public function setCreatedAt(\DateTime $createdAt): Comment
+    public function setCreatedAt(?\DateTime $createdAt): Comment
     {
         $this->createdAt = $createdAt;
         return $this;
@@ -137,7 +139,7 @@ class Comment
     /**
      * @return Recipe
      */
-    public function getRecipe(): Recipe
+    public function getRecipe(): ?Recipe
     {
         return $this->recipe;
     }
@@ -155,7 +157,7 @@ class Comment
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -173,6 +175,15 @@ class Comment
     public function __toString()
     {
         return $this->getContent();
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @throws \Exception
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
     }
 
 
