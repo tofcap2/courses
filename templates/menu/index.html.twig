@@ -3,112 +3,120 @@
 {% block title %}Menu index{% endblock %}
 
 {% block body %}
-
-    <h1 class="text-center mt-5">Choix des menus</h1>
-    <div class="menu-choice col-md-8 offset-md-2 p-3">
-        <select class="day-control">
-            <option selected="selected">7 jour</option>
-            <option>1 jours</option>
-            <option>2 jours</option>
-            <option>3 jours</option>
-            <option>4 jours</option>
-            <option>5 jours</option>
-            <option>6 jours</option>
-        </select>
-        <div class="d-flex flex-column">
-            <label>Entrée - Plat
-            <input type="checkbox" id="test" aria-label="Checkbox for following text input"></label>
-            <label>Entrée - Plat - Dessert
-            <input type="checkbox" aria-label="Checkbox for following text input"></label>
+<div class="menu-index-body pt-3 pb-3">
+    <div class="container menu-index mt-5 pt-2 d-flex flex-column">
+        <h1 class="text-center mb-3">Choix des menus</h1>
+        <div class="menu-choice col-md-8 offset-md-2 p-3">
+            <select class="day-control">
+                <option selected="selected">7 jour</option>
+                <option>1 jours</option>
+                <option>2 jours</option>
+                <option>3 jours</option>
+                <option>4 jours</option>
+                <option>5 jours</option>
+                <option>6 jours</option>
+            </select>
+            <div class="d-flex align-items-center">
+                <p>Déjeuner</p>
+                <select class="day-control col-md-4 ml-3">
+                    <option selected="selected">Entrée - Plat - Dessert</option>
+                    <option>Entrée - Plat</option>
+                </select>
+            </div>
+            <div class="d-flex">
+                <p>Dîner</p>
+                <select class="day-control col-md-4">
+                    <option selected="selected">Entrée - Plat - Dessert</option>
+                    <option>Entrée - Plat</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
-        <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Déjeuner</h2>
-        <div class="d-flex mb-2 mt-5 text-center">
-            <div class="d-flex card mr-1 w-75">Lundi</div>
-            <div class="d-flex card mr-1 w-75">Mardi</div>
-            <div class="d-flex card mr-1 w-75">Mercredi</div>
-            <div class="d-flex card mr-1 w-75">Jeudi</div>
-            <div class="d-flex card mr-1 w-75">Vendredi</div>
-            <div class="d-flex card mr-1 w-75">Samedi</div>
-            <div class="d-flex card mr-1 w-75">Dimanche</div>
-        </div>
-        <div class="menu d-flex text-center">
-            {% for menu in menus| slice(0,7) %}
-                <div class="card-menu d-flex card mr-1 w-75">
-                    <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
-                    <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
-                    <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
-        <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Diner</h2>
-        <div class="d-flex mb-2 mt-5 text-center">
-            <div class="d-flex card mr-1 w-75">Lundi</div>
-            <div class="d-flex card mr-1 w-75">Mardi</div>
-            <div class="d-flex card mr-1 w-75">Mercredi</div>
-            <div class="d-flex card mr-1 w-75">Jeudi</div>
-            <div class="d-flex card mr-1 w-75">Vendredi</div>
-            <div class="d-flex card mr-1 w-75">Samedi</div>
-            <div class="d-flex card mr-1 w-75">Dimanche</div>
-        </div>
-        <div class="menu d-flex text-center">
-            {% for menu in menus| slice(0,7) %}
-                <div class="card-menu d-flex card mr-1 w-75">
-                    <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
-                    <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
-                    <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="container d-flex flex-column mt-5">
-        <table>
-            <tr>
-                <th>Ingredient</th>
-                <th>Quantité</th>
-                <th>Unité</th>
-            </tr>
-            {% for menu in menus %}
-                {% for Ingredient in menu.starter.recipeIngredient %}
-                    <tr>
-                        <td>{{ Ingredient.ingredient.label }}</td>
-                        <td>{{ Ingredient.qte | number_format(2,",")}}</td>
-                        <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
-                                {{ Ingredient.unit.label }}
-                            {% else %}
-                            {% endif %}
-                        </td>
-                    </tr>
+        <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
+            <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Déjeuner</h2>
+            <div class="d-flex mb-2 mt-5 text-center">
+                <div class="d-flex card mr-1 w-75">Lundi</div>
+                <div class="d-flex card mr-1 w-75">Mardi</div>
+                <div class="d-flex card mr-1 w-75">Mercredi</div>
+                <div class="d-flex card mr-1 w-75">Jeudi</div>
+                <div class="d-flex card mr-1 w-75">Vendredi</div>
+                <div class="d-flex card mr-1 w-75">Samedi</div>
+                <div class="d-flex card mr-1 w-75">Dimanche</div>
+            </div>
+            <div class="menu d-flex text-center">
+                {% for menu in menus| slice(0,7) %}
+                    <div class="card-menu d-flex card mr-1 w-75">
+                        <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
+                        <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
+                        <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
+                    </div>
                 {% endfor %}
-                {% for Ingredient in menu.mainCourse.recipeIngredient %}
-                    <tr>
-                        <td>{{ Ingredient.ingredient.label }}</td>
-                        <td>{{ Ingredient.qte }}</td>
-                        <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
-                                {{ Ingredient.unit.label }}
-                            {% else %}
-                            {% endif %}
-                        </td>
-                    </tr>
+            </div>
+        </div>
+        <div class="menu-dejeuner mt-5 p-2 col-sm-12 col-md-10 offset-md-1">
+            <h2 class="menu-title col-xs-4 offset-xs-4 col-sm-4 offset-sm-4 p-3 text-center mt-5">Diner</h2>
+            <div class="d-flex mb-2 mt-5 text-center">
+                <div class="d-flex card mr-1 w-75">Lundi</div>
+                <div class="d-flex card mr-1 w-75">Mardi</div>
+                <div class="d-flex card mr-1 w-75">Mercredi</div>
+                <div class="d-flex card mr-1 w-75">Jeudi</div>
+                <div class="d-flex card mr-1 w-75">Vendredi</div>
+                <div class="d-flex card mr-1 w-75">Samedi</div>
+                <div class="d-flex card mr-1 w-75">Dimanche</div>
+            </div>
+            <div class="menu d-flex text-center">
+                {% for menu in menus| slice(0,7) %}
+                    <div class="card-menu d-flex card mr-1 w-75">
+                        <p><a href="{{ path('recipe_show', {'id': menu.starter.id}) }}">{{ menu.starter }}</a></p>
+                        <p><a href="{{ path('recipe_show', {'id': menu.mainCourse.id}) }}">{{ menu.mainCourse }}</a></p>
+                        <p><a href="{{ path('recipe_show', {'id': menu.dessert.id}) }}">{{ menu.dessert }}</a></p>
+                    </div>
                 {% endfor %}
-                {% for Ingredient in menu.dessert.recipeIngredient %}
-                    <tr>
-                        <td>{{ Ingredient.ingredient.label }}</td>
-                        <td>{{ Ingredient.qte }}</td>
-                        <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
-                                {{ Ingredient.unit.label }}
-                            {% else %}
-                            {% endif %}
-                        </td>
-                    </tr>
+            </div>
+        </div>
+        <div class="container d-flex flex-column mt-5">
+            <table>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantité</th>
+                    <th>Unité</th>
+                </tr>
+                {% for menu in menus %}
+                    {% for Ingredient in menu.starter.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte | number_format(2,",")}}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for Ingredient in menu.mainCourse.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte }}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for Ingredient in menu.dessert.recipeIngredient %}
+                        <tr>
+                            <td>{{ Ingredient.ingredient.label }}</td>
+                            <td>{{ Ingredient.qte }}</td>
+                            <td>{% if Ingredient.unit.label is defined and Ingredient.unit.label is not null %}
+                                    {{ Ingredient.unit.label }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </table>
+            </table>
+        </div>
     </div>
-    <a href="{{ path('menu_new') }}">Create new</a>
-
-    <a href="{{ path('vuecourse') }}" class="btn btn-success">Valider</a>
+</div>
 {% endblock %}

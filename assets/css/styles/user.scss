@@ -1,8 +1,19 @@
 /*===============USER================*/
+.user{
+  background-color: #F2F2F2;
+  margin-top: -20px;
+  margin-bottom: -35px;
+}
 
-.user-rens img{
-  width: 10%;
-  height: 20%;
+.user-rens{
+
+  border-radius: 20px;
+  background-color: #FFF;
+
+  img{
+    width: 10%;
+    height: 20%;
+  }
 }
 
 .add-recipe{
@@ -11,11 +22,18 @@
 
 .data-user{
 
+  justify-content: space-evenly;
+
   h5{
     font-family: Pacifico, sans-serif;
+    background-image: radial-gradient(#BBFF9C, #74D14C);
+    border-radius: 20px;
   }
 
   .last-menu{
     border: 1px solid #000;
+    background-color: #F2F2F2;
+    border-radius: 20px;
   }
 }
+

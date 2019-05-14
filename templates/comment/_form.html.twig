@@ -1,4 +1,7 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <h5>Votre commentaire</h5>
+    <div class="comment d-flex flex-column">
+        {{ form_widget(form.content) }}
+        <button class="btn btn-success mt-4">{{ button_label|default('Commenter') }}</button>
+    </div>
 {{ form_end(form) }}

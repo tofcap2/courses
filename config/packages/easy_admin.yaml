@@ -11,10 +11,45 @@ easy_admin:
       class: App\Entity\Recipe
       label: 'Recettes'
       list:
-        title: 'Liste des recettes'
+        title: "Liste des recettes"
+    Picture:
+      class: App\Entity\Picture
+      label: 'Images'
+      list:
+        title: "Liste des images"
     Category:
       class: App\Entity\Category
       label: 'Catégories'
       list:
         title: "Liste des catégories"
+    Tag:
+      class: App\Entity\Tag
+      label: 'Tag'
+      list:
+        title: "Liste des tags"
+    Menu:
+      class: App\Entity\Menu
+      label: 'Menu'
+      list:
+        title: "Menu"
+    Ingredient:
+      class: App\Entity\Ingredient
+      label: 'Ingrédient'
+      list:
+        title: "Ingrédient"
+    Unit:
+      class: App\Entity\Unit
+      label: 'Unité'
+      list:
+        title: "Unité"
+    User:
+      class: App\Entity\User
+      label: 'Utilisateur'
+      list:
+        title: "Utilisateur"
+    Comment:
+      class: App\Entity\Comment
+      label: 'Commentaires'
+      list:
+        title: "Commentaires"
 

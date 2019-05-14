@@ -18,3 +18,18 @@
     font-size: 0.8em;
   }
 }
+
+.comment-user{
+  font-family: Pacifico, sans-serif;
+}
+
+.list-comment ul:nth-child(odd){
+  background-color: grey;
+  border-radius: 20px;
+}
+
+.list-comment ul:nth-child(even){
+  background-color: #F2F2F2;
+  border-radius: 20px;
+
+}

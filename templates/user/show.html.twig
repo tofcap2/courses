@@ -3,69 +3,56 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body %}
-    <div class="container user-rens p-5 mt-5 d-flex flex-column">
-        <div class="d-flex justify-content-between align-items-center">
-            <img src="{{ asset('images/Avatar.png') }}" alt="">
-            <div class="ml-5">
-                <p class="h3">Bonjour {{ user.username }}</p>
+    <div class="user pt-3 pb-3">
+        <div class="container user-rens mt-5 p-5 pb-3 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="{{ asset('images/Avatar.png') }}" alt="">
+                <div class="ml-5">
+                    <h1 class="h3 p-2">Bonjour {{ user.username }}</h1>
+                </div>
+                <a class="add-recipe btn btn-success ml-5" href="{{ path('recipe_new') }}">Ajouter une recette</a>
             </div>
-            <a class="add-recipe btn btn-success ml-5" href="{{ path('recipe_new') }}">Ajouter une recette</a>
-        </div>
-        <div class="d-flex data-user mt-5">
-            <div>
-                <h5>Dernier menu validé</h5>
-                <div class="last-menu d-flex flex-column">
-                    {% for menu in user.menus|slice(1,1)%}
-                        <div>{{ menu.starter}}</div>
-                        <div>{{ menu.mainCourse}}</div>
-                        <div>{{ menu.dessert}}</div>
-                    {% endfor %}
+            <div class="d-flex data-user mt-5">
+                <div class="text-center">
+                    <h5 class="p-2">Dernier menu validé</h5>
+                    <div class="last-menu d-flex flex-column mt-3 p-2">
+                        {% for menu in user.menus|slice(1,1)%}
+                            <div>{{ menu.starter}}</div>
+                            <div>{{ menu.mainCourse}}</div>
+                            <div>{{ menu.dessert}}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <h5 class="p-2">Dernière liste de courses</h5>
+                    <div class="last-menu d-flex flex-column mt-3 p-2">
+                        <a href="{{ path('menu_index') }}">Dernière liste de courses</a>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h5>Dernière liste de courses</h5>
-                <div class="last-menu d-flex flex-column">
-                    {% for menu in user.menus|slice(1,1)%}
-                        <div>{{ menu.starter}}</div>
-                        <div>{{ menu.mainCourse}}</div>
-                        <div>{{ menu.dessert}}</div>
-                    {% endfor %}
+            <div class="d-flex data-user mt-5">
+                <div class="text-center">
+                    <h5 class="p-2">Menu le plus commandé</h5>
+                    <div class="last-menu d-flex flex-column mt-3 p-2">
+                        {% for menu in user.menus|slice(1,1)%}
+                            <div>{{ menu.starter}}</div>
+                            <div>{{ menu.mainCourse}}</div>
+                            <div>{{ menu.dessert}}</div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="d-flex data-user mt-5">
-            <div>
-                <h5>Menu le plus commandé</h5>
-                <div class="last-menu d-flex flex-column">
-                    {% for menu in user.menus|slice(1,1)%}
-                        <div>{{ menu.starter}}</div>
-                        <div>{{ menu.mainCourse}}</div>
-                        <div>{{ menu.dessert}}</div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div>
-                <h5>Récapitulatif de mes préférences</h5>
-                <div class="last-menu d-flex flex-column">
-                    {% for menu in user.menus|slice(1,1)%}
-                        <div>{{ menu.starter}}</div>
-                        <div>{{ menu.mainCourse}}</div>
-                        <div>{{ menu.dessert}}</div>
-                    {% endfor %}
+                <div class="text-center">
+                    <h5 class="p-2">Récapitulatif de mes préférences</h5>
+                    <div class="last-menu d-flex flex-column mt-3 p-2">
+                        {% for menu in user.menus|slice(1,1)%}
+                            <div>{{ menu.starter}}</div>
+                            <div>{{ menu.mainCourse}}</div>
+                            <div>{{ menu.dessert}}</div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
-
-
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
