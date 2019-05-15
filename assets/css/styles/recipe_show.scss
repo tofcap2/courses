@@ -31,5 +31,12 @@
 .list-comment ul:nth-child(even){
   background-color: #F2F2F2;
   border-radius: 20px;
+}
 
+.recipe-tag{
+  background-image: radial-gradient(#BBFF9C, #74D14C);
+  border-radius: 20px;
+  font-family: Pacifico, sans-serif;
+  width: 50%;
+  text-align: center;
 }
