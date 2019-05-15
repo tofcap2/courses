@@ -129,6 +129,13 @@ class Recipe
     private $recipeIngredient;
 
     /**
+     * @var Menu
+     *
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="recipe", cascade={"persist"})
+     */
+    private $menu;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -449,6 +456,26 @@ class Recipe
         $this->comments = $comments;
         return $this;
     }
+
+    /**
+     * @return Menu
+     */
+    public function getMenu(): Menu
+    {
+        return $this->menu;
+    }
+
+    /**
+     * @param Menu $menu
+     * @return Recipe
+     */
+    public function setMenu(Menu $menu): Recipe
+    {
+        $this->menu = $menu;
+        return $this;
+    }
+
+
 
 
 

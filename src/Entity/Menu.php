@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Menu
  * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
  * @ORM\Table(name="menu", indexes={@ORM\Index(name="fk_menu_recipe2_idx", columns={"main_course_id"}), @ORM\Index(name="fk_menu_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_menu_recipe1_idx", columns={"starter_id"}), @ORM\Index(name="fk_menu_recipe3_idx", columns={"dessert_id"})})
- * @ORM\Entity
+ *
  */
 class Menu
 {
@@ -31,7 +31,7 @@ class Menu
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="menu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="starter_id", referencedColumnName="id")
      * })
@@ -41,7 +41,7 @@ class Menu
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="menu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="main_course_id", referencedColumnName="id")
      * })
@@ -51,7 +51,7 @@ class Menu
     /**
      * @var Recipe
      *
-     * @ORM\ManyToOne(targetEntity="Recipe")
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="menu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="dessert_id", referencedColumnName="id")
      * })

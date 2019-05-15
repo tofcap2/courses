@@ -27,8 +27,8 @@ class MenuRepository extends ServiceEntityRepository
 
         $qb = $qb->select('ingredient.label', 'unit.label')
             ->addSelect('SUM(recipe_ingredient.qte) as iqte')
-            ->leftJoin('m.starter', 'r')
-            ->leftJoin('r.recipe_ingredient', 'ri')
+            ->innerJoin('m.starter', 's')
+            ->innerJoin('s.recipe_ingredient', 'ri')
             ->leftJoin('ri.unit', 'u')
             ->leftJoin('ri.ingredient', 'i')
             ->where($qb->expr()->eq('m.id', ':r'))

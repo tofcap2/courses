@@ -81,4 +81,23 @@ class RecipeRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param $recipeid
+     * @return mixed
+     */
+    public function findAllIngredients($recipeid) : array
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb = $qb->select('ingredient.label', 'unit.label')
+            ->addSelect('SUM(recipe_ingredient.qte) as iqte')
+            ->innerJoin('r.menu', 'm')
+            ->innerJoin('r.recipeIngredient', 'ri')
+            ->leftJoin('r.', 'u')
+            ->leftJoin('ri.ingredient', 'i')
+            ->where($qb->expr()->eq('m.id', ':r'))
+            ->groupBy('ingredient.label', 'unit.label');
+
+        return $qb->setParameter(':r', $recipeid)->getQuery()->getResult();
+    }
 }

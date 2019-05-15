@@ -26,7 +26,7 @@ class MenuController extends BaseController
             ->getRepository(Menu::class)
             ->findBy([ 'user' => $this->getUser() ]);
 
-        //$recipe = $this->getDoctrine()->getRepository(Menu::class)->findAllIngredients($menus[0]->getId());
+        //$recipe = $this->getDoctrine()->getRepository(Menu::class)->findAllIngredients($menus[1]->getId());
 
         return $this->render('menu/index.html.twig', [
             'menus' => $menus,

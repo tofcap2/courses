@@ -14,22 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends BaseController
 {
-    /**
-     * @Route("/", name="user_index", methods={"GET"})
-     */
-    public function index(): Response
-    {
-        $users = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findAll();
-
-        $menus = $this->getDoctrine()->getRepository(Menu::class)->findAll();
-
-        return $this->render('user/index.html.twig', [
-            'users' => $users,
-            'menus' => $menus
-        ]);
-    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
@@ -67,7 +51,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/edit", name="user_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {

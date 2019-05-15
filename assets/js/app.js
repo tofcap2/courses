@@ -181,9 +181,9 @@ $(document).ready(function() {
 
 //=============================================Ajout de newIngredient===========================================//
 //Apparition de la modal qui fonctionne
-$('.addIngredient').on('click', () => {
+/*$('.addIngredient').on('click', () => {
     $('#exampleModal').modal('show')
-})
+})*/
 
 // Test avec envoie du formulaire avec Ajax
 
@@ -192,9 +192,14 @@ $(function () {
         e.preventDefault()
         let label = $("#ingredient_label").val();
         let category = $("#ingredient_ingredientCategory").val();
-        $.post("",)
+        $.post("")
     })
+
 })
+
+$('#exampleModal ')
+
+
 
 
 $(document).ready(function(){
